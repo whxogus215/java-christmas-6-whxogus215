@@ -49,4 +49,16 @@ public class OrderTest {
         assertThatCode(() -> new Order(menuTypes, quantities))
                 .doesNotThrowAnyException();
     }
+
+    @DisplayName("메뉴 개수가 중복일 때, 예외 발생")
+    @Test
+    void orderValidateDuplicatedMenu() {
+        String[] menuTypes = {"양송이수프", "양송이수프", "초코케이크", "제로콜라"};
+        int[] quantities = {1, 2, 3, 4};
+
+        assertThatThrownBy(() -> new Order(menuTypes, quantities))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.NOT_IN_MENU.getMessage());
+    }
+
 }
