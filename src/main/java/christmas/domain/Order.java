@@ -17,6 +17,7 @@ public class Order {
         validateMenuType(menuTypes);
         validateAllDrinkInMenu(menuTypes);
         validateQuantity(quantities);
+        validateMaxQuantity(quantities);
     }
 
     private void validateMenuType(String[] menuTypes) {
@@ -58,6 +59,14 @@ public class Order {
                         ErrorMessage.ERROR_CODE.getMessage()
                                 + ErrorMessage.NOT_IN_MENU.getMessage());
             }
+        }
+    }
+
+    private void validateMaxQuantity(int[] quantities) {
+        int sum = Arrays.stream(quantities).sum();
+        if (sum > 20) {
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.MAX_ORDER.getMessage());
         }
     }
 }
