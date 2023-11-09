@@ -1,6 +1,8 @@
 package christmas.domain.menu;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Menu {
     MUSHROOM_SOUP(MenuType.Appetizer, "양송이수프", 6000),
@@ -44,5 +46,12 @@ public enum Menu {
     public static boolean isNotInMenu(String name) {
         return Arrays.stream(values())
                 .noneMatch(menu -> menu.getName().equals(name));
+    }
+
+    public static List<String> getDrinkMenu() {
+        return Arrays.stream(Menu.values())
+                .filter(menu -> menu.getType().equals(MenuType.Drink))
+                .map(Menu::getName)
+                .collect(Collectors.toList());
     }
 }
