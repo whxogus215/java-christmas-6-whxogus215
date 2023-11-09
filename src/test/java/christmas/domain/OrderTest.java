@@ -72,4 +72,15 @@ public class OrderTest {
                 .hasMessageContaining(ErrorMessage.NOT_ALL_DRINK.getMessage());
     }
 
+    @DisplayName("메뉴가 20개 이상일 때, 예외 발생")
+    @Test
+    void orderValidateMaxMenuTest() {
+        String[] menuTypes = {"양송이수프", "티본스테이크", "초코케이크", "제로콜라"};
+        int[] quantities = {12, 2, 3, 10};
+
+        assertThatThrownBy(() -> new Order(menuTypes, quantities))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.MAX_ORDER.getMessage());
+    }
+
 }
