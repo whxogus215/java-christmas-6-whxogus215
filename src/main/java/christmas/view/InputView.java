@@ -34,7 +34,7 @@ public class InputView {
                 System.out.println(exception.getMessage());
             }
         }
-        return null;
+        return splitMenuByComma(input);
     }
 
     private void validateInputNumber(String input) {
@@ -55,6 +55,10 @@ public class InputView {
         if (input.isBlank()) {
             throw new IllegalArgumentException(error + ErrorMessage.NOT_IN_MENU.getMessage());
         }
+    }
+
+    private String[] splitMenuByComma(String input) {
+        return input.split(",");
     }
 
     private String getMenuInInput(String input) {
