@@ -28,4 +28,25 @@ public class OrderTest {
         assertThatCode(() -> new Order(menuTypes, quantities))
                 .doesNotThrowAnyException();
     }
+
+    @DisplayName("메뉴 개수가 1 미만일 때, 예외 발생")
+    @Test
+    void orderValidateOneLessQuantity() {
+        String[] menuTypes = {"양송이수프", "티본스테이크", "초코케이크", "제로콜라"};
+        int[] quantities = {0, 2, 3, 4};
+
+        assertThatThrownBy(() -> new Order(menuTypes, quantities))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.NOT_IN_MENU.getMessage());
+    }
+
+    @DisplayName("메뉴 개수가 1 이상일 때, 예외 발생X")
+    @Test
+    void orderValidateOneMoreQuantity() {
+        String[] menuTypes = {"양송이수프", "티본스테이크", "초코케이크", "제로콜라"};
+        int[] quantities = {1, 2, 3, 4};
+
+        assertThatCode(() -> new Order(menuTypes, quantities))
+                .doesNotThrowAnyException();
+    }
 }
