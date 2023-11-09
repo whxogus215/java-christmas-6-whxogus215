@@ -31,7 +31,7 @@ public class OrderTest {
 
     @DisplayName("메뉴 개수가 1 미만일 때, 예외 발생")
     @Test
-    void orderValidateOneLessQuantity() {
+    void orderValidateOneLessQuantityTest() {
         String[] menuTypes = {"양송이수프", "티본스테이크", "초코케이크", "제로콜라"};
         int[] quantities = {0, 2, 3, 4};
 
@@ -42,7 +42,7 @@ public class OrderTest {
 
     @DisplayName("메뉴 개수가 1 이상일 때, 예외 발생X")
     @Test
-    void orderValidateOneMoreQuantity() {
+    void orderValidateOneMoreQuantityTest() {
         String[] menuTypes = {"양송이수프", "티본스테이크", "초코케이크", "제로콜라"};
         int[] quantities = {1, 2, 3, 4};
 
@@ -52,7 +52,7 @@ public class OrderTest {
 
     @DisplayName("메뉴 개수가 중복일 때, 예외 발생")
     @Test
-    void orderValidateDuplicatedMenu() {
+    void orderValidateDuplicatedMenuTest() {
         String[] menuTypes = {"양송이수프", "양송이수프", "초코케이크", "제로콜라"};
         int[] quantities = {1, 2, 3, 4};
 
@@ -63,7 +63,7 @@ public class OrderTest {
 
     @DisplayName("메뉴가 음료만 있을 때, 예외 발생")
     @Test
-    void orderValidateAllDrink() {
+    void orderValidateAllDrinkTest() {
         String[] menuTypes = {"제로콜라", "레드와인", "샴페인"};
         int[] quantities = {1, 2, 3};
 
