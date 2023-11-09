@@ -1,9 +1,12 @@
 package christmas.enums;
 
 public enum ErrorMessage {
-    NOT_DAY("날짜를 입력해주세요"),
+    ERROR_CODE("[ERROR]"),
     NOT_NUMBER("숫자를 입력해주세요."),
-    DAY_NOT_INRANGE("날짜는 1부터 31 사이의 숫자여야 합니다.");
+    DAY_NOT_INRANGE("유효하지 않은 날짜입니다. 다시 입력해 주세요."),
+    NOT_IN_MENU("유효하지 않은 주문입니다. 다시 입력해 주세요."),
+    NOT_ALL_DRINK("음료만 주문할 수 없습니다. 다시 주문해주세요.");
+
     private final String message;
 
     ErrorMessage(String message) {
