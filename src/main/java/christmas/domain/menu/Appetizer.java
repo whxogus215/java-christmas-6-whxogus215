@@ -1,7 +1,7 @@
 package christmas.domain.menu;
 
 public enum Appetizer {
-    SOUP("양송이수프", 6000),
+    MUSHROOM_SOUP("양송이수프", 6000),
     TAPAS("타파스", 5500),
     SALAD("시저샐러드", 8000);
 
