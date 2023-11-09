@@ -1,10 +1,8 @@
 package christmas.domain;
 
-import static christmas.enums.ErrorMessage.ERROR_CODE;
-import static christmas.enums.ErrorMessage.NOT_IN_MENU;
-
 import christmas.domain.menu.Menu;
 import christmas.domain.menu.MenuType;
+import christmas.enums.ErrorMessage;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +17,8 @@ public class Order {
         for (String menuType : menuTypes) {
             if (Menu.isNotInMenu(menuType)) {
                 throw new IllegalArgumentException(
-                        ERROR_CODE.getMessage() + NOT_IN_MENU.getMessage());
+                        ErrorMessage.ERROR_CODE.getMessage() +
+                        ErrorMessage.NOT_IN_MENU.getMessage());
             }
         }
     }
