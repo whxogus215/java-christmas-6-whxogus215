@@ -3,6 +3,7 @@ package christmas.domain;
 import christmas.domain.menu.Menu;
 import christmas.domain.menu.MenuType;
 import christmas.enums.ErrorMessage;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Order {
 
     public Order(String[] menuTypes, int[] quantities) {
         validateMenuType(menuTypes);
+        validateAllDrinkInMenu(menuTypes);
         validateQuantity(quantities);
     }
 
@@ -37,6 +39,15 @@ public class Order {
         if (menus.size() != menuTypes.length) {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.NOT_IN_MENU.getMessage());
+        }
+    }
+
+    private void validateAllDrinkInMenu(String[] menuTypes) {
+        List<String> drinkMenu = Menu.getDrinkMenu();
+        List<String> menus = List.of(menuTypes);
+        if (drinkMenu.equals(menus)) {
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.NOT_ALL_DRINK.getMessage());
         }
     }
 
