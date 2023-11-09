@@ -11,6 +11,7 @@ public class Order {
 
     public Order(String[] menuTypes, int[] quantities) {
         validateMenuType(menuTypes);
+        validateQuantity(quantities);
     }
 
     private void validateMenuType(String[] menuTypes) {
@@ -23,5 +24,13 @@ public class Order {
         }
     }
 
-    // Integer(Quantity)에 대한 검증 로직
+    private void validateQuantity(int[] quantities) {
+        for (int quantity : quantities) {
+            if (quantity < 1) {
+                throw new IllegalArgumentException(
+                        ErrorMessage.ERROR_CODE.getMessage()
+                                + ErrorMessage.NOT_IN_MENU.getMessage());
+            }
+        }
+    }
 }
