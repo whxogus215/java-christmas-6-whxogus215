@@ -17,8 +17,8 @@ public class Order {
         for (String menuType : menuTypes) {
             if (Menu.isNotInMenu(menuType)) {
                 throw new IllegalArgumentException(
-                        ErrorMessage.ERROR_CODE.getMessage() +
-                        ErrorMessage.NOT_IN_MENU.getMessage());
+                        ErrorMessage.ERROR_CODE.getMessage()
+                            + ErrorMessage.NOT_IN_MENU.getMessage());
             }
         }
     }
