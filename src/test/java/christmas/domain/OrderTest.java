@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import christmas.domain.menu.MenuType;
 import christmas.utils.ErrorMessage;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
@@ -102,5 +103,22 @@ public class OrderTest {
         Map<String, Integer> getOrders = order.getOrders();
 
         assertThat(getOrders.keySet().toArray()).isEqualTo(menuTypes);
+    }
+
+    @DisplayName("주문 메뉴에 디저트와 메인 메뉴 개수가 몇 개인지 반환 확인")
+    @ParameterizedTest
+    @CsvSource({
+            "해산물파스타, 바비큐립, 크리스마스파스타, 아이스크림, 1, 2, 3, 4"
+    })
+    void getDessertMainQuantityTest(String menu1, String menu2, String menu3, String menu4,
+                                 int quantity1, int quantity2, int quantity3, int quantity4) {
+        String[] menuTypes = {menu1, menu2, menu3, menu4};
+        int[] quantities = {quantity1, quantity2, quantity3, quantity4};
+
+        Order order = new Order(menuTypes, quantities);
+        Map<MenuType, Integer> findQuantities = order.getDessertAndMainQuantity();
+
+        assertThat(findQuantities.get(MenuType.Main)).isEqualTo(6);
+        assertThat(findQuantities.get(MenuType.Dessert)).isEqualTo(4);
     }
 }
