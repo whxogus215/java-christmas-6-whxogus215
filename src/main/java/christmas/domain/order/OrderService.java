@@ -116,6 +116,6 @@ public class OrderService {
         for (Menu menu : gifts.keySet()) {
             giftTotalPrice += (menu.getPrice() * gifts.get(menu));
         }
-        return totalOrderPrice - totalBenefitPrice - giftTotalPrice;
+        return totalOrderPrice - totalBenefitPrice + giftTotalPrice;
     }
 }
