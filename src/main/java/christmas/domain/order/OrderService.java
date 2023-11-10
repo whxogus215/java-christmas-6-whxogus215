@@ -40,7 +40,7 @@ public class OrderService {
         Map<Menu, Integer> gifts = getEventGift();
         for (Menu menu : gifts.keySet()) {
             int giftPrice = gifts.get(menu) * menu.getPrice();
-            allBenefits.put(menu.getName(), giftPrice);
+            allBenefits.put("증정 이벤트", giftPrice);
         }
         return allBenefits;
     }
