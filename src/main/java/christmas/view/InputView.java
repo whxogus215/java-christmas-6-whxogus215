@@ -3,8 +3,6 @@ package christmas.view;
 import camp.nextstep.edu.missionutils.Console;
 import christmas.Regex;
 import christmas.message.ErrorMessage;
-import java.util.ArrayList;
-import java.util.List;
 
 public class InputView {
     public int readDate() {
@@ -15,38 +13,27 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public String[] readMenuAndCount() {
+    public String readMenuAndCount() {
         System.out.println(
                 "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
-        String input;
-        String[] orders;
-        while (true) {
-            input = Console.readLine();
-            try {
-                validateInputBlank(input);
-                orders = splitMenuByComma(input);
-                break;
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
-        return splitMenuByComma(input);
+        String input = Console.readLine();
+        validateInputBlank(input);
+        return input;
     }
 
     private void validateInputNumber(String input) {
         if (!input.matches("^-?\\d+$")) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_CODE.getMessage()
-                    + ErrorMessage.NOT_NUMBER.getMessage());
+                    + ErrorMessage.DAY_NOT_INRANGE.getMessage());
         }
     }
 
-    private int validateDayInRange(String input) {
+    private void validateDateInRange(String input) {
         int date = Integer.parseInt(input);
         if (date < 1 || date > 31) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_CODE.getMessage()
                     + ErrorMessage.DAY_NOT_INRANGE.getMessage());
         }
-        return date;
     }
 
     private void validateInputBlank(String input) {
