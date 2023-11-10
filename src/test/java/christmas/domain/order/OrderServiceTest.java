@@ -3,7 +3,9 @@ package christmas.domain.order;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.domain.Order;
+import christmas.domain.discount.DiscountType;
 import christmas.domain.menu.Menu;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -37,5 +39,22 @@ public class OrderServiceTest {
         service.order(menuTypes, quantities);
 
         assertThat(orderPrice).isEqualTo(service.getTotalOrderPrice());
+    }
+
+    @DisplayName("총 혜택 목록 반환 확인")
+    @ParameterizedTest
+    @CsvSource({
+            "크리스마스파스타, 티본스테이크, 초코케이크, 제로콜라, 1, 2, 3, 1",
+            "해산물파스타, 바비큐립, 아이스크림, 샴페인, 1, 2, 13, 2"
+    })
+    void orderServiceTotalBenefitTest(String menu1, String menu2, String menu3, String menu4,
+                                    int quantity1, int quantity2, int quantity3, int quantity4) {
+        String[] menuTypes = {menu1, menu2, menu3, menu4};
+        int[] quantities = {quantity1, quantity2, quantity3, quantity4};
+
+        service.order(menuTypes, quantities);
+        Map<DiscountType, Integer> totalBenefit = service.getTotalBenefit(8);
+
+        assertThat(totalBenefit.get(DiscountType.WEEKEND)).isEqualTo(2023 * 3);
     }
 }
