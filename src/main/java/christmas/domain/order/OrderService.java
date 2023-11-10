@@ -28,10 +28,14 @@ public class OrderService {
 
     public List<DiscountType> getDiscountTypes(int day) {
         List<DiscountType> discountTypes = eventCheck.checkDiscountType(day);
+        calculateDiscountPrice(day, discountTypes);
+        return discountTypes;
+    }
+
+    private void calculateDiscountPrice(int day, List<DiscountType> discountTypes) {
         for (DiscountType discountType : discountTypes) {
             totalDiscountPrice += discountType.getDiscountPrice(day);
         }
-        return discountTypes;
     }
 
     public Map<Menu, Integer> getEventGift() {
