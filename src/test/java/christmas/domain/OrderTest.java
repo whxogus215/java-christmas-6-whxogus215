@@ -4,13 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import christmas.enums.ErrorMessage;
+import christmas.message.ErrorMessage;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.mockito.internal.matchers.Or;
 
 public class OrderTest {
     @DisplayName("메뉴판에 없는 메뉴있을 경우, 예외 발생")

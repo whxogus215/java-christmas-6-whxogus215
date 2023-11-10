@@ -1,10 +1,8 @@
 package christmas.domain;
 
 import christmas.domain.menu.Menu;
-import christmas.domain.menu.MenuType;
-import christmas.enums.ErrorMessage;
+import christmas.message.ErrorMessage;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;

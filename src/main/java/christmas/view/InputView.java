@@ -1,7 +1,7 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.enums.ErrorMessage;
+import christmas.message.ErrorMessage;
 
 public class InputView {
     public int readDate() {

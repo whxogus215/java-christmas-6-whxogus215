@@ -1,4 +1,4 @@
-package christmas.enums;
+package christmas.message;
 
 public enum ErrorMessage {
     ERROR_CODE("[ERROR]"),
