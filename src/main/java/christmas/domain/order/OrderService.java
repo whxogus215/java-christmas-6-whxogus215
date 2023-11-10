@@ -2,6 +2,7 @@ package christmas.domain.order;
 
 import christmas.domain.Order;
 import christmas.domain.discount.DiscountType;
+import christmas.domain.event.EventBadge;
 import christmas.domain.event.EventCheck;
 import christmas.domain.menu.Menu;
 import java.util.List;
@@ -50,6 +51,10 @@ public class OrderService {
             Integer quantity = entry.getValue();
             totalDiscountPrice += giftMenu.getPrice() * quantity;
         }
+    }
+
+    public EventBadge getEventBadge() {
+        return eventCheck.checkBadge(totalDiscountPrice);
     }
 
     private Order createOrder(String[] menuTypes, int[] quantities) {
