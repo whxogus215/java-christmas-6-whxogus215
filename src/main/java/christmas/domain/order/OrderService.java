@@ -59,4 +59,8 @@ public class OrderService {
     public int getTotalOrderPrice() {
         return totalOrderPrice;
     }
+
+    public int getTotalDiscountPrice() {
+        return totalDiscountPrice;
+    }
 }
