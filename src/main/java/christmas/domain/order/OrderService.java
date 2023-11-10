@@ -68,4 +68,13 @@ public class OrderService {
     public int getTotalBenefitPrice() {
         return totalBenefitPrice;
     }
+
+    public int getDiscountedTotalPrice() {
+        Map<Menu, Integer> gifts = getEventGift();
+        int giftTotalPrice = 0;
+        for (Menu menu : gifts.keySet()) {
+            giftTotalPrice += (menu.getPrice() * gifts.get(menu));
+        }
+        return totalOrderPrice - totalBenefitPrice - giftTotalPrice;
+    }
 }
