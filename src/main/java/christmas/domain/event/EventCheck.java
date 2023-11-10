@@ -9,8 +9,8 @@ import java.util.Map;
 public class EventCheck {
     private final int GIFT_MIN_PRICE = 120000;
 
-    public List<DiscountType> checkDiscountType(int day) {
-        return DiscountType.findDiscountTypeByDay(day);
+    public List<DiscountType> checkDiscountType(int date) {
+        return DiscountType.findDiscountTypeByDate(date);
     }
 
     public Map<Menu, Integer> checkGift(int totalPrice) {

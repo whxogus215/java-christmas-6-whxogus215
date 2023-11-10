@@ -28,15 +28,15 @@ public class OrderService {
         return order.getOrders();
     }
 
-    public List<DiscountType> getDiscountTypes(int day) {
-        List<DiscountType> discountTypes = eventCheck.checkDiscountType(day);
-        calculateDiscountPrice(day, discountTypes);
+    public List<DiscountType> getDiscountTypes(int date) {
+        List<DiscountType> discountTypes = eventCheck.checkDiscountType(date);
+        calculateDiscountPrice(date, discountTypes);
         return discountTypes;
     }
 
-    private void calculateDiscountPrice(int day, List<DiscountType> discountTypes) {
+    private void calculateDiscountPrice(int date, List<DiscountType> discountTypes) {
         for (DiscountType discountType : discountTypes) {
-            totalBenefitPrice += discountType.getDiscountPrice(day);
+            totalBenefitPrice += discountType.getDiscountPrice(date);
         }
     }
 
