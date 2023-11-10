@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.menu.Menu;
 import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -22,6 +23,14 @@ public class OutputView {
         DecimalFormat decimalFormat = new DecimalFormat("#,###,###");
         String priceFormat = decimalFormat.format(totalPrice);
         System.out.println(priceFormat + "원");
+    }
+
+    public void printGiftCatalog(Map<Menu, Integer> gifts) {
+        System.out.println("<증정 메뉴>");
+
+        for (Entry<Menu, Integer> giftEntry : gifts.entrySet()) {
+            System.out.println(giftEntry.getKey() + " " + giftEntry.getValue() + "개");
+        }
     }
 
 }
