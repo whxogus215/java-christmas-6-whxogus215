@@ -12,7 +12,7 @@ import java.util.Map.Entry;
 public class OrderService {
     private final EventCheck eventCheck;
     private int totalOrderPrice;
-    private int totalDiscountPrice;
+    private int totalBenefitPrice;
 
     public OrderService() {
         eventCheck = new EventCheck();
@@ -35,7 +35,7 @@ public class OrderService {
 
     private void calculateDiscountPrice(int day, List<DiscountType> discountTypes) {
         for (DiscountType discountType : discountTypes) {
-            totalDiscountPrice += discountType.getDiscountPrice(day);
+            totalBenefitPrice += discountType.getDiscountPrice(day);
         }
     }
 
@@ -49,12 +49,12 @@ public class OrderService {
         for (Entry<Menu, Integer> entry : gifts.entrySet()) {
             Menu giftMenu = entry.getKey();
             Integer quantity = entry.getValue();
-            totalDiscountPrice += giftMenu.getPrice() * quantity;
+            totalBenefitPrice += giftMenu.getPrice() * quantity;
         }
     }
 
     public EventBadge getEventBadge() {
-        return eventCheck.checkBadge(totalDiscountPrice);
+        return eventCheck.checkBadge(totalBenefitPrice);
     }
 
     private Order createOrder(String[] menuTypes, int[] quantities) {
@@ -65,7 +65,7 @@ public class OrderService {
         return totalOrderPrice;
     }
 
-    public int getTotalDiscountPrice() {
-        return totalDiscountPrice;
+    public int getTotalBenefitPrice() {
+        return totalBenefitPrice;
     }
 }
