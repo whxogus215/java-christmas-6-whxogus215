@@ -39,7 +39,11 @@ public class OutputView {
         for (String type : benefits.keySet()) {
             System.out.println(type + ": -" + benefits.get(type) + "원");
         }
+    }
 
+    public void printAllBenefitPrice(int price) {
+        System.out.println("<총혜택 금액>");
+        System.out.println("-" + price + "원");
     }
 
 }
