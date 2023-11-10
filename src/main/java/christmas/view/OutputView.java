@@ -32,7 +32,7 @@ public class OutputView {
         System.out.println("<증정 메뉴>");
 
         for (Entry<Menu, Integer> giftEntry : gifts.entrySet()) {
-            System.out.println(giftEntry.getKey() + " " + giftEntry.getValue() + "개");
+            System.out.println(giftEntry.getKey().getName() + " " + giftEntry.getValue() + "개");
         }
         System.out.println();
     }
