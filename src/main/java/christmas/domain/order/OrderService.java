@@ -18,13 +18,14 @@ public class OrderService {
         eventCheck = new EventCheck();
     }
 
-    public void order(String[] menuTypes, int[] quantities) {
+    public Map<String, Integer> order(String[] menuTypes, int[] quantities) {
         Order order = createOrder(menuTypes, quantities);
         Map<String, Integer> orders = order.getOrders();
         for (String menu : orders.keySet()) {
             Menu findMenu = Menu.findMenuByName(menu);
             this.totalOrderPrice += (orders.get(menu) * findMenu.getPrice());
         }
+        return order.getOrders();
     }
 
     public List<DiscountType> getDiscountTypes(int day) {
