@@ -31,6 +31,20 @@ public class OrderService {
         return order.getOrders();
     }
 
+    public Map<String, Integer> createAllBenefit(int date) {
+        Map<String, Integer> allBenefits = new HashMap<>();
+        Map<DiscountType, Integer> benefits = getTotalBenefit(date);
+        for (DiscountType type : benefits.keySet()) {
+            allBenefits.put(type.getDiscountName(), benefits.get(type));
+        }
+        Map<Menu, Integer> gifts = getEventGift();
+        for (Menu menu : gifts.keySet()) {
+            int giftPrice = gifts.get(menu) * menu.getPrice();
+            allBenefits.put(menu.getName(), giftPrice);
+        }
+        return allBenefits;
+    }
+
     public Map<DiscountType, Integer> getTotalBenefit(int date) {
         Map<DiscountType, Integer> benefits = new HashMap<>();
         Map<MenuType, Integer> dessertAndMainQuantity = order.getDessertAndMainQuantity();
@@ -57,16 +71,9 @@ public class OrderService {
     public List<DiscountType> getDiscountTypes(int date) {
         return eventCheck.checkDiscountType(date);
     }
-//
-//    private void calculateDiscountPrice(int date, List<DiscountType> discountTypes) {
-//        for (DiscountType discountType : discountTypes) {
-//            totalBenefitPrice += discountType.getDiscountPrice(date);
-//        }
-//    }
 
     public Map<Menu, Integer> getEventGift() {
         Map<Menu, Integer> gifts = eventCheck.checkGift(totalOrderPrice);
-        calculateGiftPrice(gifts);
         return gifts;
     }
 
