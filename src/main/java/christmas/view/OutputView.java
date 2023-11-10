@@ -16,6 +16,7 @@ public class OutputView {
         for (Entry<String, Integer> orderEntry : orders.entrySet()) {
             System.out.println(orderEntry.getKey() + " " + orderEntry.getValue() + "개");
         }
+        System.out.println();
     }
 
     public void printNotDiscountedTotalPrice(int totalPrice) {
@@ -24,6 +25,7 @@ public class OutputView {
         DecimalFormat decimalFormat = new DecimalFormat("#,###,###");
         String priceFormat = decimalFormat.format(totalPrice);
         System.out.println(priceFormat + "원");
+        System.out.println();
     }
 
     public void printGiftCatalog(Map<Menu, Integer> gifts) {
@@ -32,6 +34,7 @@ public class OutputView {
         for (Entry<Menu, Integer> giftEntry : gifts.entrySet()) {
             System.out.println(giftEntry.getKey() + " " + giftEntry.getValue() + "개");
         }
+        System.out.println();
     }
 
     public void printAllBenefits(Map<String, Integer> benefits) {
@@ -40,16 +43,19 @@ public class OutputView {
         for (String type : benefits.keySet()) {
             System.out.println(type + ": -" + benefits.get(type) + "원");
         }
+        System.out.println();
     }
 
     public void printAllBenefitPrice(int price) {
         System.out.println("<총혜택 금액>");
         System.out.println("-" + price + "원");
+        System.out.println();
     }
 
     public void printDiscountedTotalPrice(int price) {
         System.out.println("<할인 후 예상 결제 금액>");
         System.out.println(price + "원");
+        System.out.println();
     }
 
     public void printEventBadge(String badge) {
