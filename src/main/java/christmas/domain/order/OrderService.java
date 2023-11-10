@@ -36,12 +36,16 @@ public class OrderService {
 
     public Map<Menu, Integer> getEventGift() {
         Map<Menu, Integer> gifts = eventCheck.checkGift(totalOrderPrice);
+        calculateGiftPrice(gifts);
+        return gifts;
+    }
+
+    private void calculateGiftPrice(Map<Menu, Integer> gifts) {
         for (Entry<Menu, Integer> entry : gifts.entrySet()) {
             Menu giftMenu = entry.getKey();
             Integer quantity = entry.getValue();
             totalDiscountPrice += giftMenu.getPrice() * quantity;
         }
-        return gifts;
     }
 
     private Order createOrder(String[] menuTypes, int[] quantities) {
