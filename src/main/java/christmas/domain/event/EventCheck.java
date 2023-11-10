@@ -19,7 +19,7 @@ public class EventCheck {
         return gifts;
     }
 
-    public void checkBadge(int totalDiscountPrice, int giftPrice) {
-
+    public EventBadge checkBadge(int totalDiscountPrice) {
+        return EventBadge.getEventBadge(totalDiscountPrice);
     }
 }
