@@ -5,6 +5,8 @@ import christmas.domain.discount.DiscountType;
 import christmas.domain.event.EventBadge;
 import christmas.domain.event.EventCheck;
 import christmas.domain.menu.Menu;
+import christmas.domain.menu.MenuType;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -13,13 +15,14 @@ public class OrderService {
     private final EventCheck eventCheck;
     private int totalOrderPrice;
     private int totalBenefitPrice;
+    private Order order;
 
     public OrderService() {
         eventCheck = new EventCheck();
     }
 
     public Map<String, Integer> order(String[] menuTypes, int[] quantities) {
-        Order order = createOrder(menuTypes, quantities);
+        order = createOrder(menuTypes, quantities);
         Map<String, Integer> orders = order.getOrders();
         for (String menu : orders.keySet()) {
             Menu findMenu = Menu.findMenuByName(menu);
@@ -28,17 +31,38 @@ public class OrderService {
         return order.getOrders();
     }
 
-    public List<DiscountType> getDiscountTypes(int date) {
-        List<DiscountType> discountTypes = eventCheck.checkDiscountType(date);
-        calculateDiscountPrice(date, discountTypes);
-        return discountTypes;
+    public Map<DiscountType, Integer> getTotalBenefit(int date) {
+        Map<DiscountType, Integer> benefits = new HashMap<>();
+        Map<MenuType, Integer> dessertAndMainQuantity = order.getDessertAndMainQuantity();
+        List<DiscountType> discountTypes = getDiscountTypes(date);
+        for (DiscountType discountType : discountTypes) {
+            int price = discountType.getDiscountPrice(date);
+            int totalPrice = calculateTotalPrice(discountType, price, dessertAndMainQuantity);
+            benefits.put(discountType, totalPrice);
+        }
+        return benefits;
     }
 
-    private void calculateDiscountPrice(int date, List<DiscountType> discountTypes) {
-        for (DiscountType discountType : discountTypes) {
-            totalBenefitPrice += discountType.getDiscountPrice(date);
+    private int calculateTotalPrice(DiscountType type, int price,
+                                    Map<MenuType, Integer> menuTypes) {
+        if (type.equals(DiscountType.WEEKDAY)) {
+            return price * menuTypes.get(MenuType.Dessert);
         }
+        if (type.equals(DiscountType.WEEKEND)) {
+            return price * menuTypes.get(MenuType.Main);
+        }
+        return price;
     }
+
+    public List<DiscountType> getDiscountTypes(int date) {
+        return eventCheck.checkDiscountType(date);
+    }
+//
+//    private void calculateDiscountPrice(int date, List<DiscountType> discountTypes) {
+//        for (DiscountType discountType : discountTypes) {
+//            totalBenefitPrice += discountType.getDiscountPrice(date);
+//        }
+//    }
 
     public Map<Menu, Integer> getEventGift() {
         Map<Menu, Integer> gifts = eventCheck.checkGift(totalOrderPrice);
