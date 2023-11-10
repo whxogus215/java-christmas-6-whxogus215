@@ -13,8 +13,8 @@ import java.util.Map.Entry;
 
 public class OrderService {
     private final EventCheck eventCheck;
-    private int totalOrderPrice;
-    private int totalBenefitPrice;
+    private int totalOrderAmount;
+    private int totalBenefitAmount;
     private Order order;
 
     public OrderService() {
@@ -26,7 +26,7 @@ public class OrderService {
         Map<String, Integer> orders = order.getOrders();
         for (String menu : orders.keySet()) {
             Menu findMenu = Menu.findMenuByName(menu);
-            this.totalOrderPrice += (orders.get(menu) * findMenu.getPrice());
+            this.totalOrderAmount += (orders.get(menu) * findMenu.getPrice());
         }
         return order.getOrders();
     }
@@ -73,21 +73,21 @@ public class OrderService {
     }
 
     public Map<Menu, Integer> getEventGift() {
-        Map<Menu, Integer> gifts = eventCheck.checkGift(totalOrderPrice);
+        Map<Menu, Integer> gifts = eventCheck.checkGift(totalOrderAmount);
         return gifts;
     }
 
     public int getTotalBenefitPrice(int date) {
         calculateGiftPrice(getEventGift());
         calculateBenefit(date);
-        return totalBenefitPrice;
+        return totalBenefitAmount;
     }
 
     private void calculateGiftPrice(Map<Menu, Integer> gifts) {
         for (Entry<Menu, Integer> entry : gifts.entrySet()) {
             Menu giftMenu = entry.getKey();
             Integer quantity = entry.getValue();
-            totalBenefitPrice += giftMenu.getPrice() * quantity;
+            totalBenefitAmount += giftMenu.getPrice() * quantity;
         }
     }
 
@@ -95,20 +95,20 @@ public class OrderService {
         Map<DiscountType, Integer> totalBenefit = getTotalBenefit(date);
         for (DiscountType type : totalBenefit.keySet()) {
             int quantity = totalBenefit.get(type) / type.getDiscountPrice(date);
-            totalBenefitPrice += type.getDiscountPrice(date) * quantity;
+            totalBenefitAmount += type.getDiscountPrice(date) * quantity;
         }
     }
 
     public EventBadge getEventBadge() {
-        return eventCheck.checkBadge(totalBenefitPrice);
+        return eventCheck.checkBadge(totalBenefitAmount);
     }
 
     private Order createOrder(String[] menuTypes, int[] quantities) {
         return new Order(menuTypes, quantities);
     }
 
-    public int getTotalOrderPrice() {
-        return totalOrderPrice;
+    public int getTotalOrderAmount() {
+        return totalOrderAmount;
     }
 
     public int getDiscountedTotalPrice() {
@@ -117,6 +117,6 @@ public class OrderService {
         for (Menu menu : gifts.keySet()) {
             giftTotalPrice += (menu.getPrice() * gifts.get(menu));
         }
-        return totalOrderPrice - totalBenefitPrice + giftTotalPrice;
+        return totalOrderAmount - totalBenefitAmount + giftTotalPrice;
     }
 }
