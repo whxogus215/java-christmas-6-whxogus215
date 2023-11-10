@@ -77,11 +77,24 @@ public class OrderService {
         return gifts;
     }
 
+    public int getTotalBenefitPrice(int date) {
+        calculateGiftPrice(getEventGift());
+        calculateBenefit(date);
+        return totalBenefitPrice;
+    }
+
     private void calculateGiftPrice(Map<Menu, Integer> gifts) {
         for (Entry<Menu, Integer> entry : gifts.entrySet()) {
             Menu giftMenu = entry.getKey();
             Integer quantity = entry.getValue();
             totalBenefitPrice += giftMenu.getPrice() * quantity;
+        }
+    }
+
+    private void calculateBenefit(int date) {
+        Map<DiscountType, Integer> totalBenefit = getTotalBenefit(date);
+        for (DiscountType type : totalBenefit.keySet()) {
+            totalBenefitPrice += type.getDiscountPrice(date) * totalBenefit.get(type);
         }
     }
 
@@ -95,10 +108,6 @@ public class OrderService {
 
     public int getTotalOrderPrice() {
         return totalOrderPrice;
-    }
-
-    public int getTotalBenefitPrice() {
-        return totalBenefitPrice;
     }
 
     public int getDiscountedTotalPrice() {
