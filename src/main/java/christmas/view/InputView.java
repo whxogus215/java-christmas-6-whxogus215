@@ -22,7 +22,7 @@ public class InputView {
     }
 
     private void validateInputNumber(String input) {
-        if (!input.matches("^-?\\d+$")) {
+        if (!input.matches(Regex.INTEGER.getRegex())) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_CODE.getMessage()
                     + ErrorMessage.DAY_NOT_INRANGE.getMessage());
         }
@@ -36,28 +36,10 @@ public class InputView {
         }
     }
 
-    private void validateInputBlank(String input) {
+    public static void validateInputBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.NOT_IN_MENU.getMessage());
         }
-    }
-
-    private String[] splitMenuByComma(String input) {
-        String[] splitOrders = input.split(",");
-        for (String splitedOrder : splitOrders) {
-            validateInputBlank(splitedOrder);
-        }
-        return splitOrders;
-    }
-
-    private String getMenuInInput(String input) {
-        int index = input.lastIndexOf("-");
-        return input.substring(0, index - 1);
-    }
-
-    private String getCountInInput(String input) {
-        int index = input.lastIndexOf("-");
-        return input.substring(index + 1);
     }
 }
