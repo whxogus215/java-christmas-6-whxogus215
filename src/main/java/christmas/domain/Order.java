@@ -6,18 +6,23 @@ import christmas.enums.ErrorMessage;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class Order {
-    private Map<MenuType, Integer> orders = new HashMap<>();
+    private final Map<String, Integer> orders = new LinkedHashMap<>();
 
     public Order(String[] menuTypes, int[] quantities) {
         validateMenuType(menuTypes);
         validateAllDrinkInMenu(menuTypes);
         validateQuantity(quantities);
         validateMaxQuantity(quantities);
+
+        for (int i = 0; i < menuTypes.length; i++) {
+            orders.put(menuTypes[i], quantities[i]);
+        }
     }
 
     private void validateMenuType(String[] menuTypes) {
@@ -68,5 +73,9 @@ public class Order {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.MAX_ORDER.getMessage());
         }
+    }
+
+    public Map<String, Integer> getOrders() {
+        return new LinkedHashMap<>(orders);
     }
 }
