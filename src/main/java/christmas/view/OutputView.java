@@ -1,6 +1,7 @@
 package christmas.view;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class OutputView {
     public void printFirstNotice(int day) {
@@ -9,8 +10,11 @@ public class OutputView {
 
     public void printMenu(Map<String, Integer> orders) {
         System.out.println("<주문 메뉴>");
-
-        // ...
+        for (Entry<String, Integer> orderEntry : orders.entrySet()) {
+            System.out.println(orderEntry.getKey() + " " + orderEntry.getValue() + "개");
+        }
     }
+
+
 
 }
