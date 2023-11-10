@@ -33,7 +33,7 @@ public class OrderService {
 
     public Map<String, Integer> createAllBenefit(int date) {
         Map<String, Integer> allBenefits = new HashMap<>();
-        Map<DiscountType, Integer> benefits = getTotalBenefit(date);
+        Map<DiscountType, Integer> benefits = getBenefitsWithoutGift(date);
         for (DiscountType type : benefits.keySet()) {
             allBenefits.put(type.getDiscountName(), benefits.get(type));
         }
@@ -45,7 +45,7 @@ public class OrderService {
         return allBenefits;
     }
 
-    public Map<DiscountType, Integer> getTotalBenefit(int date) {
+    public Map<DiscountType, Integer> getBenefitsWithoutGift(int date) {
         Map<DiscountType, Integer> benefits = new HashMap<>();
         Map<MenuType, Integer> dessertAndMainQuantity = order.getDessertAndMainQuantity();
         List<DiscountType> discountTypes = getDiscountTypes(date);
@@ -92,7 +92,7 @@ public class OrderService {
     }
 
     private void calculateBenefit(int date) {
-        Map<DiscountType, Integer> totalBenefit = getTotalBenefit(date);
+        Map<DiscountType, Integer> totalBenefit = getBenefitsWithoutGift(date);
         for (DiscountType type : totalBenefit.keySet()) {
             int quantity = totalBenefit.get(type) / type.getDiscountPrice(date);
             totalBenefitAmount += type.getDiscountPrice(date) * quantity;
