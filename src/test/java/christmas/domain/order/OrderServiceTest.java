@@ -38,7 +38,7 @@ public class OrderServiceTest {
         }
         service.order(menuTypes, quantities);
 
-        assertThat(orderPrice).isEqualTo(service.getTotalOrderPrice());
+        assertThat(orderPrice).isEqualTo(service.getTotalOrderAmount());
     }
 
     @DisplayName("총 혜택 목록 반환 확인")
@@ -53,7 +53,7 @@ public class OrderServiceTest {
         int[] quantities = {quantity1, quantity2, quantity3, quantity4};
 
         service.order(menuTypes, quantities);
-        Map<DiscountType, Integer> totalBenefit = service.getTotalBenefit(8);
+        Map<DiscountType, Integer> totalBenefit = service.getBenefitsWithoutGift(8);
 
         assertThat(totalBenefit.get(DiscountType.WEEKEND)).isEqualTo(2023 * 3);
     }

@@ -5,17 +5,21 @@ import christmas.domain.order.OrderService;
 import christmas.utils.Converter;
 import christmas.utils.ErrorMessage;
 import christmas.view.InputView;
+import christmas.view.OutputView;
+import java.util.Map;
 
 public class OrderController {
     private final InputView inputView;
+    private final OutputView outputView;
     private final OrderService service;
 
     private int date;
     private String[] menuNames;
     private int[] quantities;
 
-    public OrderController(InputView inputView, OrderService service) {
+    public OrderController(InputView inputView, OutputView outputView, OrderService service) {
         this.inputView = inputView;
+        this.outputView = outputView;
         this.service = service;
     }
 
@@ -33,6 +37,20 @@ public class OrderController {
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+    public void showResult() {
+        outputView.printFirstNotice(date);
+        Map<String, Integer> orders = service.order(menuNames, quantities);
+        outputView.printMenu(orders);
+        outputView.printNotDiscountedTotalPrice(service.getTotalOrderAmount());
+        Map<Menu, Integer> gift = service.getEventGift();
+        outputView.printGiftCatalog(gift);
+        Map<String, Integer> allBenefit = service.createAllBenefit(date);
+        outputView.printAllBenefits(allBenefit);
+        outputView.printAllBenefitPrice(service.getTotalBenefitPrice(date));
+        outputView.printDiscountedTotalPrice(service.getDiscountedTotalPrice());
+        outputView.printEventBadge(service.getEventBadge().getName());
     }
 
     private int getDate() {

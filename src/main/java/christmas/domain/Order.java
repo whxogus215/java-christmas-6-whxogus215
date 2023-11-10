@@ -16,7 +16,7 @@ public class Order {
 
     public Order(String[] menuTypes, int[] quantities) {
         validateMenuType(menuTypes);
-        validateAllDrinkInMenu(menuTypes);
+        validateAllDrinkInOrder(menuTypes);
         validateQuantity(quantities);
         validateMaxQuantity(quantities);
 
@@ -27,7 +27,7 @@ public class Order {
 
     private void validateMenuType(String[] menuTypes) {
         validateIsInMenu(menuTypes);
-        validateDuplicateInMenu(menuTypes);
+        validateDuplicateInOrder(menuTypes);
     }
 
     private void validateIsInMenu(String[] menuTypes) {
@@ -40,7 +40,7 @@ public class Order {
         }
     }
 
-    private void validateDuplicateInMenu(String[] menuTypes) {
+    private void validateDuplicateInOrder(String[] menuTypes) {
         Set<String> menus = new HashSet<>(List.of(menuTypes));
         if (menus.size() != menuTypes.length) {
             throw new IllegalArgumentException(
@@ -48,7 +48,7 @@ public class Order {
         }
     }
 
-    private void validateAllDrinkInMenu(String[] menuTypes) {
+    private void validateAllDrinkInOrder(String[] menuTypes) {
         List<String> drinkMenu = Menu.getDrinkMenu();
         List<String> menus = List.of(menuTypes);
         if (drinkMenu.equals(menus)) {
