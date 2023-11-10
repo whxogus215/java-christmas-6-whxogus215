@@ -1,8 +1,10 @@
 package christmas.domain;
 
 import christmas.domain.menu.Menu;
+import christmas.domain.menu.MenuType;
 import christmas.utils.ErrorMessage;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -75,5 +77,16 @@ public class Order {
 
     public Map<String, Integer> getOrders() {
         return new LinkedHashMap<>(orders);
+    }
+
+    public Map<MenuType, Integer> getDessertAndMainQuantity() {
+        Map<MenuType, Integer> catalog = new HashMap<>();
+        for (String orderMenu : orders.keySet()) {
+            MenuType findMenuType = Menu.findMenuByName(orderMenu).getType();
+            if (findMenuType.equals(MenuType.Dessert) || findMenuType.equals(MenuType.Main)) {
+                catalog.merge(findMenuType, orders.get(orderMenu), Integer::sum);
+            }
+        }
+        return catalog;
     }
 }
