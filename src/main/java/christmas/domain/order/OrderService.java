@@ -94,7 +94,8 @@ public class OrderService {
     private void calculateBenefit(int date) {
         Map<DiscountType, Integer> totalBenefit = getTotalBenefit(date);
         for (DiscountType type : totalBenefit.keySet()) {
-            totalBenefitPrice += type.getDiscountPrice(date) * totalBenefit.get(type);
+            int quantity = totalBenefit.get(type) / type.getDiscountPrice(date);
+            totalBenefitPrice += type.getDiscountPrice(date) * quantity;
         }
     }
 
