@@ -14,14 +14,14 @@ public class EventCheck {
         return DiscountType.findDiscountTypeByDate(date);
     }
 
-    public Map<Menu, Integer> checkGift(int totalPrice) {
-        if (totalPrice < GIFT_MIN_PRICE) {
+    public Map<Menu, Integer> checkGift(int totalOrderAmount) {
+        if (totalOrderAmount < GIFT_MIN_PRICE) {
             return Collections.singletonMap(Menu.NONE, Menu.NONE.getPrice());
         }
-        return Collections.singletonMap(GIFT_ITEM, totalPrice / GIFT_MIN_PRICE);
+        return Collections.singletonMap(GIFT_ITEM, totalOrderAmount / GIFT_MIN_PRICE);
     }
 
-    public EventBadge checkBadge(int totalDiscountPrice) {
-        return EventBadge.getEventBadge(totalDiscountPrice);
+    public EventBadge checkBadge(int totalBenefitAmount) {
+        return EventBadge.getEventBadge(totalBenefitAmount);
     }
 }
