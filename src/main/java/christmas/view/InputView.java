@@ -24,10 +24,12 @@ public class InputView {
         System.out.println(
                 "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
         String input;
+        String[] orders;
         while (true) {
             input = Console.readLine();
             try {
                 validateInputBlank(input);
+                orders = splitMenuByComma(input);
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
@@ -60,7 +62,11 @@ public class InputView {
     }
 
     private String[] splitMenuByComma(String input) {
-        return input.split(",");
+        String[] splitOrders = input.split(",");
+        for (String splitedOrder : splitOrders) {
+            validateInputBlank(splitedOrder);
+        }
+        return splitOrders;
     }
 
     private String getMenuInInput(String input) {
