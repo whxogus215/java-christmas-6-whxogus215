@@ -1,5 +1,6 @@
 package christmas.view;
 
+import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -15,6 +16,12 @@ public class OutputView {
         }
     }
 
+    public void printNotDiscountedTotalPrice(int totalPrice) {
+        System.out.println("<할인 전 총주문 금액>");
 
+        DecimalFormat decimalFormat = new DecimalFormat("#,###,###");
+        String priceFormat = decimalFormat.format(totalPrice);
+        System.out.println(priceFormat + "원");
+    }
 
 }
