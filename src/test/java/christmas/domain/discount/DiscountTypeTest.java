@@ -16,7 +16,7 @@ public class DiscountTypeTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 12, 23, 25})
     void discountTypeChristTest(int day) {
-        List<DiscountType> types = DiscountType.findDiscountTypeByDay(day);
+        List<DiscountType> types = DiscountType.findDiscountTypeByDate(day);
 
         assertThat(DiscountType.CHRISTMAS).isIn(types);
         assertThat(DiscountType.CHRISTMAS.getDiscountPrice(day))
@@ -27,7 +27,7 @@ public class DiscountTypeTest {
     @ParameterizedTest
     @ValueSource(ints = {4, 12, 20, 28})
     void discountTypeWeekDayTest(int day) {
-        List<DiscountType> types = DiscountType.findDiscountTypeByDay(day);
+        List<DiscountType> types = DiscountType.findDiscountTypeByDate(day);
 
         assertThat(DiscountType.WEEKDAY).isIn(types);
         assertThat(DiscountType.WEEKDAY.getDiscountPrice(day))
@@ -38,7 +38,7 @@ public class DiscountTypeTest {
     @ParameterizedTest
     @ValueSource(ints = {8, 9, 15, 23})
     void discountTypeWeekendTest(int day) {
-        List<DiscountType> types = DiscountType.findDiscountTypeByDay(day);
+        List<DiscountType> types = DiscountType.findDiscountTypeByDate(day);
 
         assertThat(DiscountType.WEEKEND).isIn(types);
         assertThat(DiscountType.WEEKEND.getDiscountPrice(day))
@@ -49,7 +49,7 @@ public class DiscountTypeTest {
     @ParameterizedTest
     @ValueSource(ints = {3, 10, 17, 24})
     void discountTypeSpecialTest(int day) {
-        List<DiscountType> types = DiscountType.findDiscountTypeByDay(day);
+        List<DiscountType> types = DiscountType.findDiscountTypeByDate(day);
 
         assertThat(DiscountType.SPECIAL).isIn(types);
         assertThat(DiscountType.SPECIAL.getDiscountPrice(day))

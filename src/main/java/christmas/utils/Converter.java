@@ -1,6 +1,5 @@
-package christmas;
+package christmas.utils;
 
-import christmas.message.ErrorMessage;
 import christmas.view.InputView;
 
 public class Converter {

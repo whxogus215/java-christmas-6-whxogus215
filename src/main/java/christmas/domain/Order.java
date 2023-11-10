@@ -1,7 +1,7 @@
 package christmas.domain;
 
 import christmas.domain.menu.Menu;
-import christmas.message.ErrorMessage;
+import christmas.utils.ErrorMessage;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashMap;

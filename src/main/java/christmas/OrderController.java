@@ -2,7 +2,8 @@ package christmas;
 
 import christmas.domain.menu.Menu;
 import christmas.domain.order.OrderService;
-import christmas.message.ErrorMessage;
+import christmas.utils.Converter;
+import christmas.utils.ErrorMessage;
 import christmas.view.InputView;
 
 public class OrderController {

@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import christmas.Application;
-import christmas.message.ErrorMessage;
+import christmas.utils.ErrorMessage;
 import org.junit.jupiter.api.Test;
 
 public class InputExceptionTest extends NsTest {

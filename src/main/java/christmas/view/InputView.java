@@ -1,8 +1,8 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.Regex;
-import christmas.message.ErrorMessage;
+import christmas.utils.Regex;
+import christmas.utils.ErrorMessage;
 
 public class InputView {
     public int readDate() {

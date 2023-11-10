@@ -1,4 +1,4 @@
-package christmas;
+package christmas.utils;
 
 public enum Regex {
     INTEGER("정수 값이어야 함", "^-?\\d+$"),
