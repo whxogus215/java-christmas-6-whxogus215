@@ -15,7 +15,7 @@ public class EventCheck {
 
     public Map<Menu, Integer> checkGift(int totalPrice) {
         Map<Menu, Integer> gifts = new HashMap<>();
-        gifts.put(Menu.CHAMPAGNE, totalPrice % GIFT_MIN_PRICE);
+        gifts.put(Menu.CHAMPAGNE, totalPrice / GIFT_MIN_PRICE);
         return gifts;
     }
 
