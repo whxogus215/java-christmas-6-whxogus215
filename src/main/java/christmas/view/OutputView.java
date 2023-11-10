@@ -33,4 +33,13 @@ public class OutputView {
         }
     }
 
+    public void printAllBenefits(Map<String, Integer> benefits) {
+        System.out.println("<혜택 내역>");
+
+        for (String type : benefits.keySet()) {
+            System.out.println(type + ": -" + benefits.get(type) + "원");
+        }
+
+    }
+
 }
