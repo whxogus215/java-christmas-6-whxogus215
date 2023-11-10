@@ -6,6 +6,7 @@ import christmas.domain.event.EventCheck;
 import christmas.domain.menu.Menu;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class OrderService {
     private final EventCheck eventCheck;
@@ -31,6 +32,16 @@ public class OrderService {
             totalDiscountPrice += discountType.getDiscountPrice(day);
         }
         return discountTypes;
+    }
+
+    public Map<Menu, Integer> getEventGift() {
+        Map<Menu, Integer> gifts = eventCheck.checkGift(totalOrderPrice);
+        for (Entry<Menu, Integer> entry : gifts.entrySet()) {
+            Menu giftMenu = entry.getKey();
+            Integer quantity = entry.getValue();
+            totalDiscountPrice += giftMenu.getPrice() * quantity;
+        }
+        return gifts;
     }
 
     private Order createOrder(String[] menuTypes, int[] quantities) {
