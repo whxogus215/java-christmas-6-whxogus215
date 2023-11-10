@@ -1,9 +1,9 @@
 package christmas.domain.discount;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public enum DiscountType {
     CHRISTMAS(
@@ -38,14 +38,13 @@ public enum DiscountType {
     }
 
     public static List<DiscountType> findDiscountTypeByDay(int day) {
-        List<DiscountType> types = new ArrayList<>();
-        for (DiscountType type : DiscountType.values()) {
-            if (type.discountDays.contains(day)) {
-                types.add(type);
-            }
-            return types;
+        List<DiscountType> types = Arrays.stream(values())
+                .filter(type -> type.discountDays != null && type.discountDays.contains(day))
+                .collect(Collectors.toList());
+
+        if (types.isEmpty()) {
+            types.add(NONE);
         }
-        types.add(NONE);
         return types;
     }
 
