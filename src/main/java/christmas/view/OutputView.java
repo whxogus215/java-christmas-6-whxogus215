@@ -22,9 +22,8 @@ public class OutputView {
     public void printNotDiscountedTotalPrice(int totalPrice) {
         System.out.println("<할인 전 총주문 금액>");
 
-        DecimalFormat decimalFormat = new DecimalFormat("#,###,###");
-        String priceFormat = decimalFormat.format(totalPrice);
-        System.out.println(priceFormat + "원");
+        String formattedValue = getFormattedValue(totalPrice);
+        System.out.println(formattedValue + "원");
         System.out.println();
     }
 
@@ -45,25 +44,35 @@ public class OutputView {
         System.out.println("<혜택 내역>");
 
         for (String type : benefits.keySet()) {
-            System.out.println(type + ": -" + benefits.get(type) + "원");
+            String formattedValue = getFormattedValue(benefits.get(type));
+            System.out.println(type + ": -" + formattedValue + "원");
         }
         System.out.println();
     }
 
     public void printAllBenefitPrice(int price) {
         System.out.println("<총혜택 금액>");
-        System.out.println("-" + price + "원");
+
+        String formattedValue = getFormattedValue(price);
+        System.out.println("-" + formattedValue + "원");
         System.out.println();
     }
 
     public void printDiscountedTotalPrice(int price) {
         System.out.println("<할인 후 예상 결제 금액>");
-        System.out.println(price + "원");
+
+        String formattedValue = getFormattedValue(price);
+        System.out.println(formattedValue + "원");
         System.out.println();
     }
 
     public void printEventBadge(String badge) {
         System.out.println("<12월 이벤트 배지>");
         System.out.println(badge);
+    }
+
+    private String getFormattedValue(int price) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###,###");
+        return decimalFormat.format(price);
     }
 }
