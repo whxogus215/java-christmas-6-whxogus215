@@ -2,6 +2,7 @@ package christmas.exception;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import christmas.Application;
@@ -14,6 +15,15 @@ public class InputExceptionTest extends NsTest {
         assertSimpleTest(() -> {
             runException("3", "제로콜라-3, ");
             assertThat(output()).contains(ErrorMessage.NOT_IN_MENU.getMessage());
+        });
+    }
+
+    @Test
+    void 주문_예외_테스트_공백제거() {
+        assertSimpleTest(() -> {
+            runException("3", "타파스-3 ");
+            assertThatCode(() -> runException("3", "타파스-3 "))
+                    .doesNotThrowAnyException();
         });
     }
 
