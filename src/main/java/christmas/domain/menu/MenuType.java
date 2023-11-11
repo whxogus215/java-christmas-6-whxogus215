@@ -4,7 +4,8 @@ public enum MenuType {
     Appetizer("애피타이저"),
     Main("메인"),
     Dessert("디저트"),
-    Drink("음료");
+    Drink("음료"),
+    Gift("증정품");
 
     private final String menuType;
 
