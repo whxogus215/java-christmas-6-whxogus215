@@ -2,7 +2,6 @@ package christmas.utils;
 
 public enum ErrorMessage {
     ERROR_CODE("[ERROR] "),
-    NOT_NUMBER("숫자를 입력해주세요."),
     DAY_NOT_INRANGE("유효하지 않은 날짜입니다. 다시 입력해 주세요."),
     NOT_IN_MENU("유효하지 않은 주문입니다. 다시 입력해 주세요."),
     NOT_ALL_DRINK("음료만 주문할 수 없습니다. 다시 주문해주세요."),
