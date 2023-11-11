@@ -23,7 +23,13 @@ public class OrderController {
         this.service = service;
     }
 
-    public void receiveOrder() {
+    public void placeOrderRequest() {
+        receiveOrder();
+        submitOrder();
+        showOrderResult();
+    }
+
+    private void receiveOrder() {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
         date = getDate();
         while (true) {
@@ -39,11 +45,11 @@ public class OrderController {
         }
     }
 
-    public void submitOrder() {
+    private void submitOrder() {
         service.order(menuNames, quantities);
     }
 
-    public void showOrderResult() {
+    private void showOrderResult() {
         outputView.printFirstNotice(date);
 
         showBeforeDiscountOrder();
