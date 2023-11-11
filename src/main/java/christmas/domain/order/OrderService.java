@@ -60,10 +60,10 @@ public class OrderService {
     private int calculateTotalPrice(DiscountType type, int price,
                                     Map<MenuType, Integer> menuTypes) {
         if (type.equals(DiscountType.WEEKDAY)) {
-            return price * menuTypes.getOrDefault(MenuType.Dessert, 0);
+            return price * menuTypes.getOrDefault(MenuType.DESSERT, 0);
         }
         if (type.equals(DiscountType.WEEKEND)) {
-            return price * menuTypes.getOrDefault(MenuType.Main, 0);
+            return price * menuTypes.getOrDefault(MenuType.MAIN, 0);
         }
         return price;
     }

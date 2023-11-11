@@ -1,11 +1,11 @@
 package christmas.domain.menu;
 
 public enum MenuType {
-    Appetizer("애피타이저"),
-    Main("메인"),
-    Dessert("디저트"),
-    Drink("음료"),
-    Gift("증정품");
+    APPETIZER("애피타이저"),
+    MAIN("메인"),
+    DESSERT("디저트"),
+    DRINK("음료"),
+    GIFT("증정품");
 
     private final String menuType;
 

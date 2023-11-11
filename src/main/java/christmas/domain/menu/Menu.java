@@ -5,23 +5,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum Menu {
-    MUSHROOM_SOUP(MenuType.Appetizer, "양송이수프", 6000),
-    TAPAS(MenuType.Appetizer, "타파스", 5500),
-    SALAD(MenuType.Appetizer, "시저샐러드", 8000),
+    MUSHROOM_SOUP(MenuType.APPETIZER, "양송이수프", 6000),
+    TAPAS(MenuType.APPETIZER, "타파스", 5500),
+    SALAD(MenuType.APPETIZER, "시저샐러드", 8000),
 
-    STEAK(MenuType.Main, "티본스테이크", 55000),
-    LIP(MenuType.Main, "바비큐립", 54000),
-    FISH_PASTA(MenuType.Main, "해산물파스타", 35000),
-    CHRISTMAS_PASTA(MenuType.Main, "크리스마스파스타", 25000),
+    STEAK(MenuType.MAIN, "티본스테이크", 55000),
+    LIP(MenuType.MAIN, "바비큐립", 54000),
+    FISH_PASTA(MenuType.MAIN, "해산물파스타", 35000),
+    CHRISTMAS_PASTA(MenuType.MAIN, "크리스마스파스타", 25000),
 
-    CHOCO_CAKE(MenuType.Dessert, "초코케이크", 15000),
-    ICECREAM(MenuType.Dessert, "아이스크림", 5000),
+    CHOCO_CAKE(MenuType.DESSERT, "초코케이크", 15000),
+    ICECREAM(MenuType.DESSERT, "아이스크림", 5000),
 
-    ZERO_COKE(MenuType.Drink, "제로콜라", 3000),
-    RED_WINE(MenuType.Drink, "레드와인", 60000),
-    CHAMPAGNE(MenuType.Drink, "샴페인", 25000),
+    ZERO_COKE(MenuType.DRINK, "제로콜라", 3000),
+    RED_WINE(MenuType.DRINK, "레드와인", 60000),
+    CHAMPAGNE(MenuType.DRINK, "샴페인", 25000),
 
-    NONE(MenuType.Gift, "없음", 0);
+    NONE(MenuType.GIFT, "없음", 0);
 
     private final MenuType type;
     private final String name;
@@ -52,7 +52,7 @@ public enum Menu {
 
     public static List<String> getDrinkMenu() {
         return Arrays.stream(Menu.values())
-                .filter(menu -> menu.getType().equals(MenuType.Drink))
+                .filter(menu -> menu.getType().equals(MenuType.DRINK))
                 .map(Menu::getName)
                 .collect(Collectors.toList());
     }

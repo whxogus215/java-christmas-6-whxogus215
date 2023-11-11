@@ -83,7 +83,7 @@ public class Order {
         Map<MenuType, Integer> catalog = new HashMap<>();
         for (String orderMenu : orders.keySet()) {
             MenuType findMenuType = Menu.findMenuByName(orderMenu).getType();
-            if (findMenuType.equals(MenuType.Dessert) || findMenuType.equals(MenuType.Main)) {
+            if (findMenuType.equals(MenuType.DESSERT) || findMenuType.equals(MenuType.MAIN)) {
                 catalog.merge(findMenuType, orders.get(orderMenu), Integer::sum);
             }
         }

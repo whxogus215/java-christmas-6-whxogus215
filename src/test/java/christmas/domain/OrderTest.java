@@ -118,7 +118,7 @@ public class OrderTest {
         Order order = new Order(menuTypes, quantities);
         Map<MenuType, Integer> findQuantities = order.getDessertAndMainQuantity();
 
-        assertThat(findQuantities.get(MenuType.Main)).isEqualTo(6);
-        assertThat(findQuantities.get(MenuType.Dessert)).isEqualTo(4);
+        assertThat(findQuantities.get(MenuType.MAIN)).isEqualTo(6);
+        assertThat(findQuantities.get(MenuType.DESSERT)).isEqualTo(4);
     }
 }
