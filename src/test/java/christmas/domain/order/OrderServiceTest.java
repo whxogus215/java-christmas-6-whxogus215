@@ -2,7 +2,6 @@ package christmas.domain.order;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.domain.Order;
 import christmas.domain.discount.DiscountType;
 import christmas.domain.menu.Menu;
 import java.util.Map;

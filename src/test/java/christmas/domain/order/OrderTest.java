@@ -1,10 +1,11 @@
-package christmas.domain;
+package christmas.domain.order;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import christmas.domain.menu.MenuType;
+import christmas.domain.order.Order;
 import christmas.utils.ErrorMessage;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;

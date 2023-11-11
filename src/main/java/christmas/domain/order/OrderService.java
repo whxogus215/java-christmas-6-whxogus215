@@ -1,6 +1,5 @@
 package christmas.domain.order;
 
-import christmas.domain.Order;
 import christmas.domain.discount.DiscountType;
 import christmas.domain.event.EventBadge;
 import christmas.domain.event.EventCheck;
