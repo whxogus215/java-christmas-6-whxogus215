@@ -68,7 +68,7 @@ public class OutputView {
 
     public void printEventBadge(String badge) {
         System.out.println("<12월 이벤트 배지>");
-        System.out.println(badge);
+        System.out.print(badge);
     }
 
     private String getFormattedValue(int price) {
