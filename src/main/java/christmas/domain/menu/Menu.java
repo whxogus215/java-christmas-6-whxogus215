@@ -21,7 +21,7 @@ public enum Menu {
     RED_WINE(MenuType.Drink, "레드와인", 60000),
     CHAMPAGNE(MenuType.Drink, "샴페인", 25000),
 
-    NONE(null, "없음", 0);
+    NONE(MenuType.Gift, "없음", 0);
 
     private final MenuType type;
     private final String name;
