@@ -18,7 +18,14 @@ public class Converter {
         for (String splitedOrder : splitOrders) {
             InputView.validateInputBlank(splitedOrder);
         }
-        return splitOrders;
+        return removeElementSpace(splitOrders);
+    }
+
+    private static String[] removeElementSpace(String[] input) {
+        for (int i = 0; i < input.length; i++) {
+            input[i] = input[i].trim();
+        }
+        return input;
     }
 
     private static String[] convertMenusByHypen(String[] orders) {
