@@ -16,7 +16,6 @@ public class Order {
 
     public Order(String[] menuTypes, int[] quantities) {
         validateMenuType(menuTypes);
-        validateAllDrinkInOrder(menuTypes);
         validateQuantity(quantities);
         validateMaxQuantity(quantities);
 
@@ -45,15 +44,6 @@ public class Order {
         if (menus.size() != menuTypes.length) {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.NOT_IN_MENU.getMessage());
-        }
-    }
-
-    private void validateAllDrinkInOrder(String[] menuTypes) {
-        List<String> drinkMenu = Menu.getDrinkMenu();
-        List<String> menus = List.of(menuTypes);
-        if (drinkMenu.equals(menus)) {
-            throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.NOT_ALL_DRINK.getMessage());
         }
     }
 

@@ -6,6 +6,7 @@ import christmas.utils.Converter;
 import christmas.utils.ErrorMessage;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.util.List;
 import java.util.Map;
 
 public class OrderController {
@@ -38,6 +39,7 @@ public class OrderController {
                 quantities = Converter.getQuantities(orders);
                 menuNames = Converter.getMenuNames(orders);
                 validateIsInMenu(menuNames);
+                validateAllDrinkInOrder(menuNames);
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
@@ -106,6 +108,15 @@ public class OrderController {
                         ErrorMessage.ERROR_CODE.getMessage()
                                 + ErrorMessage.NOT_IN_MENU.getMessage());
             }
+        }
+    }
+
+    private void validateAllDrinkInOrder(String[] menuTypes) {
+        List<String> drinkMenu = Menu.getDrinkMenu();
+        List<String> menus = List.of(menuTypes);
+        if (drinkMenu.containsAll(menus)) {
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.NOT_ALL_DRINK.getMessage());
         }
     }
 }
