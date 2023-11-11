@@ -13,7 +13,7 @@ public class InputExceptionTest extends NsTest {
     @Test
     void 주문_예외_테스트() {
         assertSimpleTest(() -> {
-            runException("3", "제로콜라-3, ");
+            runException("3", "타파스-3, ");
             assertThat(output()).contains(ErrorMessage.NOT_IN_MENU.getMessage());
         });
     }
@@ -21,9 +21,16 @@ public class InputExceptionTest extends NsTest {
     @Test
     void 주문_예외_테스트_공백제거() {
         assertSimpleTest(() -> {
-            runException("3", "타파스-3 ");
             assertThatCode(() -> runException("3", "타파스-3 "))
                     .doesNotThrowAnyException();
+        });
+    }
+
+    @Test
+    void 주문_예외_테스트_음료만있을때() {
+        assertSimpleTest(() -> {
+            runException("3", "제로콜라-3");
+            assertThat(output()).contains(ErrorMessage.NOT_ALL_DRINK.getMessage());
         });
     }
 

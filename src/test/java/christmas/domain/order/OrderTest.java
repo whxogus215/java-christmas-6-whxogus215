@@ -67,17 +67,6 @@ public class OrderTest {
                 .hasMessageContaining(ErrorMessage.NOT_IN_MENU.getMessage());
     }
 
-    @DisplayName("메뉴가 음료만 있을 때, 예외 발생")
-    @Test
-    void orderValidateAllDrinkTest() {
-        String[] menuTypes = {"제로콜라", "레드와인", "샴페인"};
-        int[] quantities = {1, 2, 3};
-
-        assertThatThrownBy(() -> new Order(menuTypes, quantities))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.NOT_ALL_DRINK.getMessage());
-    }
-
     @DisplayName("메뉴가 20개 이상일 때, 예외 발생")
     @Test
     void orderValidateMaxMenuTest() {
