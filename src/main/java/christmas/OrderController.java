@@ -23,7 +23,7 @@ public class OrderController {
         this.service = service;
     }
 
-    public void reserveOrders() {
+    public void receiveOrder() {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
         date = getDate();
         while (true) {
