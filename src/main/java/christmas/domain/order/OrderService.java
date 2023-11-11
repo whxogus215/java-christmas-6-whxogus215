@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class OrderService {
+    private final int MIN_PRICE = 10000;
     private final EventCheck eventCheck;
     private int totalOrderAmount;
     private int totalBenefitAmount;
@@ -33,7 +34,16 @@ public class OrderService {
         return order.getOrders();
     }
 
-    public Map<String, Integer> createAllBenefit(int date) {
+    public Map<String, Integer> getAllBenefit(int date) {
+        if (totalOrderAmount < MIN_PRICE) {
+            Map<String, Integer> noneBenefit = new HashMap<>();
+            noneBenefit.put(DiscountType.NONE.getDiscountName(), 0);
+            return noneBenefit;
+        }
+        return createAllBenefit(date);
+    }
+
+    private Map<String, Integer> createAllBenefit(int date) {
         Map<String, Integer> allBenefits = new HashMap<>();
         Map<DiscountType, Integer> benefits = getBenefitsWithoutGift(date);
         for (DiscountType type : benefits.keySet()) {
@@ -103,6 +113,9 @@ public class OrderService {
     }
 
     private void calculateBenefit(int date) {
+        if (totalOrderAmount < MIN_PRICE) {
+            return;
+        }
         Map<DiscountType, Integer> totalBenefit = getBenefitsWithoutGift(date);
         for (DiscountType type : totalBenefit.keySet()) {
             if (type.equals(DiscountType.NONE)) {

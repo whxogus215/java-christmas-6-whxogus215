@@ -67,7 +67,7 @@ public class OrderController {
         Map<Menu, Integer> gift = service.getEventGift();
         outputView.printGiftCatalog(gift);
 
-        Map<String, Integer> allBenefit = service.createAllBenefit(date);
+        Map<String, Integer> allBenefit = service.getAllBenefit(date);
         outputView.printAllBenefits(allBenefit);
         outputView.printAllBenefitPrice(service.getTotalBenefitPrice(date));
         outputView.printDiscountedTotalPrice(service.getDiscountedTotalPrice());
