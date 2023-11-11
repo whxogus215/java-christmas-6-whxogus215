@@ -32,6 +32,10 @@ public class OutputView {
         System.out.println("<증정 메뉴>");
 
         for (Entry<Menu, Integer> giftEntry : gifts.entrySet()) {
+            if (giftEntry.getKey().equals(Menu.NONE)) {
+                System.out.println(giftEntry.getKey().getName());
+                continue;
+            }
             System.out.println(giftEntry.getKey().getName() + " " + giftEntry.getValue() + "개");
         }
         System.out.println();
