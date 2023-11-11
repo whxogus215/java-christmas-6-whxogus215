@@ -39,17 +39,31 @@ public class OrderController {
         }
     }
 
-    public void showResult() {
+    public void submitOrder() {
+        service.order(menuNames, quantities);
+    }
+
+    public void showOrderResult() {
         outputView.printFirstNotice(date);
-        Map<String, Integer> orders = service.order(menuNames, quantities);
-        outputView.printMenu(orders);
+
+        showBeforeDiscountOrder();
+        showAfterDiscountOrder();
+    }
+
+    private void showBeforeDiscountOrder() {
+        outputView.printMenu(service.getOrderResult());
         outputView.printNotDiscountedTotalPrice(service.getTotalOrderAmount());
+    }
+
+    private void showAfterDiscountOrder() {
         Map<Menu, Integer> gift = service.getEventGift();
         outputView.printGiftCatalog(gift);
+
         Map<String, Integer> allBenefit = service.createAllBenefit(date);
         outputView.printAllBenefits(allBenefit);
         outputView.printAllBenefitPrice(service.getTotalBenefitPrice(date));
         outputView.printDiscountedTotalPrice(service.getDiscountedTotalPrice());
+
         outputView.printEventBadge(service.getEventBadge().getName());
     }
 
