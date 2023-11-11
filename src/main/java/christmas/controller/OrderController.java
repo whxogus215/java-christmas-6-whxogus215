@@ -1,4 +1,4 @@
-package christmas;
+package christmas.controller;
 
 import christmas.domain.menu.Menu;
 import christmas.domain.order.OrderService;
