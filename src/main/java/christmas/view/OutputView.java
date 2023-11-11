@@ -60,7 +60,10 @@ public class OutputView {
         System.out.println("<총혜택 금액>");
 
         String formattedValue = getFormattedValue(price);
-        System.out.println("-" + formattedValue + "원");
+        if (!formattedValue.equals("0")) {
+            formattedValue = "-" + formattedValue;
+        }
+        System.out.println(formattedValue + "원");
         System.out.println();
     }
 
