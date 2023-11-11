@@ -38,6 +38,9 @@ public class OrderService {
             allBenefits.put(type.getDiscountName(), benefits.get(type));
         }
         Map<Menu, Integer> gifts = getEventGift();
+        if (gifts.containsKey(Menu.NONE)) {
+            return allBenefits;
+        }
         for (Menu menu : gifts.keySet()) {
             int giftPrice = gifts.get(menu) * menu.getPrice();
             allBenefits.put("증정 이벤트", giftPrice);
@@ -52,7 +55,13 @@ public class OrderService {
         for (DiscountType discountType : discountTypes) {
             int price = discountType.getDiscountPrice(date);
             int totalPrice = calculateTotalPrice(discountType, price, dessertAndMainQuantity);
+            if (totalPrice == 0) {
+                continue;
+            }
             benefits.put(discountType, totalPrice);
+        }
+        if (benefits.isEmpty()) {
+            benefits.put(DiscountType.NONE, DiscountType.NONE.getDiscountPrice(date));
         }
         return benefits;
     }
@@ -94,6 +103,9 @@ public class OrderService {
     private void calculateBenefit(int date) {
         Map<DiscountType, Integer> totalBenefit = getBenefitsWithoutGift(date);
         for (DiscountType type : totalBenefit.keySet()) {
+            if (type.equals(DiscountType.NONE)) {
+                break;
+            }
             int quantity = totalBenefit.get(type) / type.getDiscountPrice(date);
             totalBenefitAmount += type.getDiscountPrice(date) * quantity;
         }

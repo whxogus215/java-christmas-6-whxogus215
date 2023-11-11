@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.discount.DiscountType;
 import christmas.domain.menu.Menu;
 import java.text.DecimalFormat;
 import java.util.Map;
@@ -43,6 +44,11 @@ public class OutputView {
     public void printAllBenefits(Map<String, Integer> benefits) {
         System.out.println("<혜택 내역>");
 
+        if (benefits.containsKey(DiscountType.NONE.getDiscountName())) {
+            System.out.println("없음");
+            System.out.println();
+            return;
+        }
         for (String type : benefits.keySet()) {
             String formattedValue = getFormattedValue(benefits.get(type));
             System.out.println(type + ": -" + formattedValue + "원");
