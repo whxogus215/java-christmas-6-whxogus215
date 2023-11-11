@@ -21,13 +21,16 @@ public class OrderService {
         eventCheck = new EventCheck();
     }
 
-    public Map<String, Integer> order(String[] menuTypes, int[] quantities) {
+    public void order(String[] menuTypes, int[] quantities) {
         order = createOrder(menuTypes, quantities);
         Map<String, Integer> orders = order.getOrders();
         for (String menu : orders.keySet()) {
             Menu findMenu = Menu.findMenuByName(menu);
             this.totalOrderAmount += (orders.get(menu) * findMenu.getPrice());
         }
+    }
+
+    public Map<String, Integer> getOrderResult() {
         return order.getOrders();
     }
 
