@@ -96,3 +96,17 @@
     - 할인 후 예상 결제 금액: `expectedPaymentAmount`
 - [x] 컨트롤러 메서드 기능별로 분리시키기
 - [ ] 서비스 계층 메서드 기능별로 정리 및 메서드 이름 수정
+
+## 객체 별 메서드 소개
+### Controller
+1. `placeOrderRequest` : 컨트롤러에게 주문을 요청하는 메서드로, 어플리케이션을 시작하는 인터페이스이다.
+   - `receiveOrder()` : 사용자에게 주문(메뉴 및 수량)을 받는 기능을 수행하는 메서드이다.
+   - `submitOrder()` : 주문받은 내역을 서비스에게 전달하여 주문 등록을 요청하는 메서드이다.
+   - `showOrderResult()` : 주문 후 여러 결과들을 출력을 요청하는 메서드이다.
+     - `showBeforeDiscountOrder()` : 할인이 적용되기 전 결과(주문 메뉴, 할인 전 총주문 금액)의 출력을 요청하는 메서드이다.
+     - `showAfterDiscountOrder()` : 할인이 적용된 후 결과(증정 메뉴, 혜택 내역, 총혜택 금액, 할인 후 예상 결제 금액, 12월 이벤트 배지)
+     의 출력을 요청하는 메서드이다.
+### InputView
+### OutputView
+> `OutputView`는 결과를 출력하는 역할을 갖고 있기 때문에 `print`라는 접두사를 사용하였다. `Controller`는
+> `OutputView`에서 출력한 값들을 보여주는 역할을 갖기 때문에 `show`라는 접두사를 사용하였다.
