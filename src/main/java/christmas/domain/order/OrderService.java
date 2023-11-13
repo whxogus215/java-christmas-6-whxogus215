@@ -60,7 +60,7 @@ public class OrderService {
         return allBenefits;
     }
 
-    public Map<DiscountType, Integer> getBenefitsWithoutGift(int date) {
+    private Map<DiscountType, Integer> getBenefitsWithoutGift(int date) {
         Map<DiscountType, Integer> benefits = new HashMap<>();
         Map<MenuType, Integer> dessertAndMainQuantity = order.getDessertAndMainQuantity();
         List<DiscountType> discountTypes = getDiscountTypes(date);
