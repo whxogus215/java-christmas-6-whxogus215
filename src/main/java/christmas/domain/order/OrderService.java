@@ -34,19 +34,6 @@ public class OrderService {
         return new Order(menuTypes, quantities);
     }
 
-    public Map<String, Integer> getOrderResult() {
-        return order.getOrders();
-    }
-
-    public int getTotalOrderAmount() {
-        return totalOrderAmount;
-    }
-
-    public Map<Menu, Integer> getEventGift() {
-        Map<Menu, Integer> gifts = eventCheck.checkGift(totalOrderAmount);
-        return gifts;
-    }
-
     public Map<String, Integer> getAllBenefit(int date) {
         if (totalOrderAmount < MIN_PRICE) {
             Map<String, Integer> noneBenefit = new HashMap<>();
@@ -102,16 +89,6 @@ public class OrderService {
         return price;
     }
 
-    public List<DiscountType> getDiscountTypes(int date) {
-        return eventCheck.checkDiscountType(date);
-    }
-
-    public int getTotalBenefitPrice(int date) {
-        calculateGiftPrice(getEventGift());
-        calculateBenefit(date);
-        return totalBenefitAmount;
-    }
-
     private void calculateGiftPrice(Map<Menu, Integer> gifts) {
         for (Entry<Menu, Integer> entry : gifts.entrySet()) {
             Menu giftMenu = entry.getKey();
@@ -134,8 +111,22 @@ public class OrderService {
         }
     }
 
-    public EventBadge getEventBadge() {
-        return eventCheck.checkBadge(totalBenefitAmount);
+    public Map<String, Integer> getOrderResult() {
+        return order.getOrders();
+    }
+
+    public List<DiscountType> getDiscountTypes(int date) {
+        return eventCheck.checkDiscountType(date);
+    }
+
+    public int getTotalBenefitPrice(int date) {
+        calculateGiftPrice(getEventGift());
+        calculateBenefit(date);
+        return totalBenefitAmount;
+    }
+
+    public int getTotalOrderAmount() {
+        return totalOrderAmount;
     }
 
     public int getDiscountedTotalPrice() {
@@ -145,5 +136,14 @@ public class OrderService {
             giftTotalPrice += (menu.getPrice() * gifts.get(menu));
         }
         return totalOrderAmount - totalBenefitAmount + giftTotalPrice;
+    }
+
+    public Map<Menu, Integer> getEventGift() {
+        Map<Menu, Integer> gifts = eventCheck.checkGift(totalOrderAmount);
+        return gifts;
+    }
+
+    public EventBadge getEventBadge() {
+        return eventCheck.checkBadge(totalBenefitAmount);
     }
 }
