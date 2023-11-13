@@ -52,8 +52,8 @@ public class OrderServiceTest {
         int[] quantities = {quantity1, quantity2, quantity3, quantity4};
 
         service.order(menuTypes, quantities);
-        Map<DiscountType, Integer> totalBenefit = service.getBenefitsWithoutGift(8);
+        Map<String, Integer> totalBenefit = service.getAllBenefit(8);
 
-        assertThat(totalBenefit.get(DiscountType.WEEKEND)).isEqualTo(2023 * 3);
+        assertThat(totalBenefit.get(DiscountType.WEEKEND.getDiscountName())).isEqualTo(2023 * 3);
     }
 }
