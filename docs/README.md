@@ -107,6 +107,19 @@
      - `showAfterDiscountOrder()` : 할인이 적용된 후 결과(증정 메뉴, 혜택 내역, 총혜택 금액, 할인 후 예상 결제 금액, 12월 이벤트 배지)
      의 출력을 요청하는 메서드이다.
 ### InputView
+1. `readDate()` : 방문 날짜를 입력받는 메서드이다.
+2. `readMenuAndCount()` : 주문 메뉴와 수량을 입력받는 메서드이다.
+3. `validateInputNumber` : 정규식 검증을 통해 숫자 형식을 검증하는 메서드이다.
+4. `validateDateInRange()` : 입력받은 날짜가 1과 31 사이인지 검증하는 메서드이다.
+5. `validateInputBlank()` : 입력 값이 공백인지 검증하는 메서드이다.
 ### OutputView
+1. `printFirstNotice()` : 결과 출력하기 전 메시지 출력하는 메서드이다.
+2. `printMenu()` : 입력받은 주문 Map의 Key-Value를 주문 메뉴 형식으로 출력하는 메서드이다.
+3. `printNotDiscountedTotalPrice()` : 할인 전 총주문 금액을 출력하는 메서드이다.
+4. `printGiftCatalog()` : 증정 메뉴 목록을 출력하는 메서드이다.
+5. `printAllBenefits()` : 혜택 내역을 출력하는 메서드이다.
+6. `printDiscountedTotalPrice()` 할인 후 예상 결제 금액을 출력하는 메서드이다.
+7. `printEventBadge()` : 12월 이벤트 배지를 출력하는 메서드이다.
+8. `getFormattedValue()` : 숫자를 천 단위마다 `,`로 구분하여 반환하는 메서드이다.
 > `OutputView`는 결과를 출력하는 역할을 갖고 있기 때문에 `print`라는 접두사를 사용하였다. `Controller`는
 > `OutputView`에서 출력한 값들을 보여주는 역할을 갖기 때문에 `show`라는 접두사를 사용하였다.
