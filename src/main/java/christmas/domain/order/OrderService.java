@@ -79,7 +79,7 @@ public class OrderService {
         List<DiscountType> discountTypes = getDiscountTypes(date);
         for (DiscountType discountType : discountTypes) {
             int price = discountType.getDiscountPrice(date);
-            int totalPrice = calculateTotalPrice(discountType, price, dessertAndMainQuantity);
+            int totalPrice = calculateDiscountPrice(discountType, price, dessertAndMainQuantity);
             if (totalPrice == 0) {
                 continue;
             }
@@ -91,8 +91,8 @@ public class OrderService {
         return benefits;
     }
 
-    private int calculateTotalPrice(DiscountType type, int price,
-                                    Map<MenuType, Integer> menuTypes) {
+    private int calculateDiscountPrice(DiscountType type, int price,
+                                       Map<MenuType, Integer> menuTypes) {
         if (type.equals(DiscountType.WEEKDAY)) {
             return price * menuTypes.getOrDefault(MenuType.DESSERT, 0);
         }
