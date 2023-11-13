@@ -30,8 +30,21 @@ public class OrderService {
         }
     }
 
+    private Order createOrder(String[] menuTypes, int[] quantities) {
+        return new Order(menuTypes, quantities);
+    }
+
     public Map<String, Integer> getOrderResult() {
         return order.getOrders();
+    }
+
+    public int getTotalOrderAmount() {
+        return totalOrderAmount;
+    }
+
+    public Map<Menu, Integer> getEventGift() {
+        Map<Menu, Integer> gifts = eventCheck.checkGift(totalOrderAmount);
+        return gifts;
     }
 
     public Map<String, Integer> getAllBenefit(int date) {
@@ -40,10 +53,10 @@ public class OrderService {
             noneBenefit.put(DiscountType.NONE.getDiscountName(), 0);
             return noneBenefit;
         }
-        return createAllBenefit(date);
+        return createAllBenefits(date);
     }
 
-    private Map<String, Integer> createAllBenefit(int date) {
+    private Map<String, Integer> createAllBenefits(int date) {
         Map<String, Integer> allBenefits = new HashMap<>();
         Map<DiscountType, Integer> benefits = getBenefitsWithoutGift(date);
         for (DiscountType type : benefits.keySet()) {
@@ -93,11 +106,6 @@ public class OrderService {
         return eventCheck.checkDiscountType(date);
     }
 
-    public Map<Menu, Integer> getEventGift() {
-        Map<Menu, Integer> gifts = eventCheck.checkGift(totalOrderAmount);
-        return gifts;
-    }
-
     public int getTotalBenefitPrice(int date) {
         calculateGiftPrice(getEventGift());
         calculateBenefit(date);
@@ -128,14 +136,6 @@ public class OrderService {
 
     public EventBadge getEventBadge() {
         return eventCheck.checkBadge(totalBenefitAmount);
-    }
-
-    private Order createOrder(String[] menuTypes, int[] quantities) {
-        return new Order(menuTypes, quantities);
-    }
-
-    public int getTotalOrderAmount() {
-        return totalOrderAmount;
     }
 
     public int getDiscountedTotalPrice() {
