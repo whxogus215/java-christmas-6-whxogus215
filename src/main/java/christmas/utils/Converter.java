@@ -36,7 +36,7 @@ public class Converter {
             if (!menu.matches(Regex.ONLY_STRING.getRegex())) {
                 throw new IllegalArgumentException(
                         ErrorMessage.ERROR_CODE.getMessage()
-                                + ErrorMessage.NOT_IN_MENU.getMessage());
+                                + ErrorMessage.REPEAT_ORDER.getMessage());
             }
             menus[i] = menu;
         }
@@ -51,7 +51,7 @@ public class Converter {
             if (!count.matches(Regex.NOT_EMPTY_NUMBER.getRegex())) {
                 throw new IllegalArgumentException(
                         ErrorMessage.ERROR_CODE.getMessage()
-                                + ErrorMessage.NOT_IN_MENU.getMessage());
+                                + ErrorMessage.REPEAT_ORDER.getMessage());
             }
             quantities[i] = Integer.parseInt(count);
         }

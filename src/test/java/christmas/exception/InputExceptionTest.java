@@ -16,7 +16,7 @@ public class InputExceptionTest extends NsTest {
     void inputExceptionNotFormatTest() {
         assertSimpleTest(() -> {
             runException("3", "타파스-3, ");
-            assertThat(output()).contains(ErrorMessage.NOT_IN_MENU.getMessage());
+            assertThat(output()).contains(ErrorMessage.REPEAT_ORDER.getMessage());
         });
     }
 
@@ -43,7 +43,7 @@ public class InputExceptionTest extends NsTest {
     void inputExceptionNotInMenuTest() {
         assertSimpleTest(() -> {
             runException("3", "타파스-3,메로나-3,등갈비-3,스프라이트-4");
-            assertThat(output()).contains(ErrorMessage.NOT_IN_MENU.getMessage());
+            assertThat(output()).contains(ErrorMessage.REPEAT_ORDER.getMessage());
         });
     }
 
@@ -61,7 +61,7 @@ public class InputExceptionTest extends NsTest {
     void inputExceptionOneLessQuantityTest() {
         assertSimpleTest(() -> {
             runException("3", "양송이수프-0,티본스테이크-3,초코케이크-3,제로콜라-4");
-            assertThat(output()).contains(ErrorMessage.NOT_IN_MENU.getMessage());
+            assertThat(output()).contains(ErrorMessage.REPEAT_ORDER.getMessage());
         });
     }
 
@@ -70,7 +70,7 @@ public class InputExceptionTest extends NsTest {
     void inputExceptionDuplicatedMenuTest() {
         assertSimpleTest(() -> {
             runException("3", "양송이수프-2,양송이수프-3,초코케이크-3,제로콜라-4");
-            assertThat(output()).contains(ErrorMessage.NOT_IN_MENU.getMessage());
+            assertThat(output()).contains(ErrorMessage.REPEAT_ORDER.getMessage());
         });
     }
 
@@ -79,7 +79,7 @@ public class InputExceptionTest extends NsTest {
     void inputExceptionMaxMenuTest() {
         assertSimpleTest(() -> {
             runException("3", "양송이수프-2,양송이수프-13,초코케이크-3,제로콜라-4");
-            assertThat(output()).contains(ErrorMessage.NOT_IN_MENU.getMessage());
+            assertThat(output()).contains(ErrorMessage.REPEAT_ORDER.getMessage());
         });
     }
 

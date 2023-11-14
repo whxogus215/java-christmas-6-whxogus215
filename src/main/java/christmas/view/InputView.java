@@ -24,7 +24,7 @@ public class InputView {
     private void validateInputNumber(String input) {
         if (!input.matches(Regex.INTEGER.getRegex())) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_CODE.getMessage()
-                    + ErrorMessage.DAY_NOT_INRANGE.getMessage());
+                    + ErrorMessage.REPEAT_DATE.getMessage());
         }
     }
 
@@ -32,14 +32,14 @@ public class InputView {
         int date = Integer.parseInt(input);
         if (date < 1 || date > 31) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_CODE.getMessage()
-                    + ErrorMessage.DAY_NOT_INRANGE.getMessage());
+                    + ErrorMessage.REPEAT_DATE.getMessage());
         }
     }
 
     public static void validateInputBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.NOT_IN_MENU.getMessage());
+                    ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.REPEAT_ORDER.getMessage());
         }
     }
 }

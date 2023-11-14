@@ -115,7 +115,7 @@ public class OrderController {
             if (Menu.isNotInMenu(menuType)) {
                 throw new IllegalArgumentException(
                         ErrorMessage.ERROR_CODE.getMessage()
-                                + ErrorMessage.NOT_IN_MENU.getMessage());
+                                + ErrorMessage.REPEAT_ORDER.getMessage());
             }
         }
     }
@@ -124,7 +124,7 @@ public class OrderController {
         Set<String> menus = new HashSet<>(List.of(menuTypes));
         if (menus.size() != menuTypes.length) {
             throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.NOT_IN_MENU.getMessage());
+                    ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.REPEAT_ORDER.getMessage());
         }
     }
 
@@ -138,7 +138,7 @@ public class OrderController {
             if (quantity < 1) {
                 throw new IllegalArgumentException(
                         ErrorMessage.ERROR_CODE.getMessage()
-                                + ErrorMessage.NOT_IN_MENU.getMessage());
+                                + ErrorMessage.REPEAT_ORDER.getMessage());
             }
         }
     }
