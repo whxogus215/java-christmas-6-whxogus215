@@ -1,6 +1,7 @@
 package christmas.domain.discount;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -23,7 +24,7 @@ public enum DiscountType {
             16, 22, 23, 29, 30), date -> DiscountPrice.YEAR.getPrice()),
     SPECIAL("특별 할인", Arrays.asList(3, 10, 17, 24, 25, 31),
             date -> DiscountPrice.DEFAULT.getPrice()),
-    NONE("없음", null, date -> DiscountPrice.ZERO.getPrice());
+    NONE("없음", Collections.EMPTY_LIST, date -> DiscountPrice.ZERO.getPrice());
 
     private final String discountName;
     private final List<Integer> discountDates;
