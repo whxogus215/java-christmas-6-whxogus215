@@ -6,8 +6,11 @@ import christmas.utils.Converter;
 import christmas.utils.ErrorMessage;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class OrderController {
     private final InputView inputView;
@@ -38,8 +41,9 @@ public class OrderController {
                 String orders = getOrders();
                 quantities = Converter.getQuantities(orders);
                 menuNames = Converter.getMenuNames(orders);
-                validateIsInMenu(menuNames);
+                validateMenuType(menuNames);
                 validateAllDrinkInOrder(menuNames);
+                validateQuantity(quantities);
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
@@ -101,6 +105,11 @@ public class OrderController {
         return orders;
     }
 
+    private void validateMenuType(String[] menuTypes) {
+        validateIsInMenu(menuTypes);
+        validateDuplicateInOrder(menuTypes);
+    }
+
     private void validateIsInMenu(String[] menuTypes) {
         for (String menuType : menuTypes) {
             if (Menu.isNotInMenu(menuType)) {
@@ -108,6 +117,37 @@ public class OrderController {
                         ErrorMessage.ERROR_CODE.getMessage()
                                 + ErrorMessage.NOT_IN_MENU.getMessage());
             }
+        }
+    }
+
+    private void validateDuplicateInOrder(String[] menuTypes) {
+        Set<String> menus = new HashSet<>(List.of(menuTypes));
+        if (menus.size() != menuTypes.length) {
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.NOT_IN_MENU.getMessage());
+        }
+    }
+
+    private void validateQuantity(int[] quantities) {
+        validateMinCount(quantities);
+        validateMaxQuantity(quantities);
+    }
+
+    private void validateMinCount(int[] quantities) {
+        for (int quantity : quantities) {
+            if (quantity < 1) {
+                throw new IllegalArgumentException(
+                        ErrorMessage.ERROR_CODE.getMessage()
+                                + ErrorMessage.NOT_IN_MENU.getMessage());
+            }
+        }
+    }
+
+    private void validateMaxQuantity(int[] quantities) {
+        int sum = Arrays.stream(quantities).sum();
+        if (sum > 20) {
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.MAX_ORDER.getMessage());
         }
     }
 
