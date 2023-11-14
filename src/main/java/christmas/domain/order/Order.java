@@ -2,66 +2,16 @@ package christmas.domain.order;
 
 import christmas.domain.menu.Menu;
 import christmas.domain.menu.MenuType;
-import christmas.utils.ErrorMessage;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class Order {
     private final Map<String, Integer> orders = new LinkedHashMap<>();
 
     public Order(String[] menuTypes, int[] quantities) {
-        validateMenuType(menuTypes);
-        validateQuantity(quantities);
-        validateMaxQuantity(quantities);
-
         for (int i = 0; i < menuTypes.length; i++) {
             orders.put(menuTypes[i], quantities[i]);
-        }
-    }
-
-    private void validateMenuType(String[] menuTypes) {
-        validateIsInMenu(menuTypes);
-        validateDuplicateInOrder(menuTypes);
-    }
-
-    private void validateIsInMenu(String[] menuTypes) {
-        for (String menuType : menuTypes) {
-            if (Menu.isNotInMenu(menuType)) {
-                throw new IllegalArgumentException(
-                        ErrorMessage.ERROR_CODE.getMessage()
-                                + ErrorMessage.NOT_IN_MENU.getMessage());
-            }
-        }
-    }
-
-    private void validateDuplicateInOrder(String[] menuTypes) {
-        Set<String> menus = new HashSet<>(List.of(menuTypes));
-        if (menus.size() != menuTypes.length) {
-            throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.NOT_IN_MENU.getMessage());
-        }
-    }
-
-    private void validateQuantity(int[] quantities) {
-        for (int quantity : quantities) {
-            if (quantity < 1) {
-                throw new IllegalArgumentException(
-                        ErrorMessage.ERROR_CODE.getMessage()
-                                + ErrorMessage.NOT_IN_MENU.getMessage());
-            }
-        }
-    }
-
-    private void validateMaxQuantity(int[] quantities) {
-        int sum = Arrays.stream(quantities).sum();
-        if (sum > 20) {
-            throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_CODE.getMessage() + ErrorMessage.MAX_ORDER.getMessage());
         }
     }
 
