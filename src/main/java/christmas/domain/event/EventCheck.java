@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class EventCheck {
     private final int GIFT_MIN_PRICE = 120000;
+    private final int GIFT_AMOUNT = 1;
     private final Menu GIFT_ITEM = Menu.CHAMPAGNE;
 
     public List<DiscountType> checkDiscountType(int date) {
@@ -18,7 +19,7 @@ public class EventCheck {
         if (totalOrderAmount < GIFT_MIN_PRICE) {
             return Collections.singletonMap(Menu.NONE, Menu.NONE.getPrice());
         }
-        return Collections.singletonMap(GIFT_ITEM, totalOrderAmount / GIFT_MIN_PRICE);
+        return Collections.singletonMap(GIFT_ITEM, GIFT_AMOUNT);
     }
 
     public EventBadge checkBadge(int totalBenefitAmount) {
