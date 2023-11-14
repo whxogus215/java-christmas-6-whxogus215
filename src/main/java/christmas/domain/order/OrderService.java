@@ -106,8 +106,7 @@ public class OrderService {
             if (type.equals(DiscountType.NONE)) {
                 break;
             }
-            int quantity = totalBenefit.get(type) / type.getDiscountPrice(date);
-            totalBenefitAmount += type.getDiscountPrice(date) * quantity;
+            totalBenefitAmount += totalBenefit.get(type);
         }
     }
 
