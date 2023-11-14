@@ -95,9 +95,9 @@
     - 총 혜택 금액: `totalBenefitAmount` (할인 금액의 합계 + 증정 메뉴의 가격)
     - 할인 후 예상 결제 금액: `expectedPaymentAmount`
 - [x] 컨트롤러 메서드 기능별로 분리시키기
-- [ ] 서비스 계층 메서드 기능별로 정리 및 메서드 이름 수정
+- [x] 서비스 계층 메서드 기능별로 정리 및 메서드 이름 수정
 
-## 객체 별 메서드 소개
+## 계층 별 메서드 소개
 ### Controller
 1. `placeOrderRequest` : 컨트롤러에게 주문을 요청하는 메서드로, 어플리케이션을 시작하는 인터페이스이다.
    - `receiveOrder()` : 사용자에게 주문(메뉴 및 수량)을 받는 기능을 수행하는 메서드이다.
@@ -123,3 +123,17 @@
 8. `getFormattedValue()` : 숫자를 천 단위마다 `,`로 구분하여 반환하는 메서드이다.
 > `OutputView`는 결과를 출력하는 역할을 갖고 있기 때문에 `print`라는 접두사를 사용하였다. `Controller`는
 > `OutputView`에서 출력한 값들을 보여주는 역할을 갖기 때문에 `show`라는 접두사를 사용하였다.
+### OrderService
+1. `order()` : InputView에게 전달받은 메뉴 이름과, 수량을 바탕으로 주문을 생성한다. 그리고 할인 전 총주문 금액을 업데이트 한다.
+   - `createOrder()` : Order 객체를 생성하는 메서드로 `OrderService`만 사용할 수 있다.
+2. `getOrderResult()` : `Order`에 저장된 주문 내역을 반환하는 메서드이다.
+3. `getTotalOrderAmount()` : 할인 전 총주문 금액을 반환하는 메서드이다.
+4. `getEventGift()` : 할인 전 총주문 금액을 바탕으로 증정 메뉴를 반환하는 메서드이다.
+5. `getAllBenefit()` : 혜택 내역을 반환하는 메서드이다.
+   - `createAllBenefit()` : **증정 이벤트를 포함한 모든 혜택 내역**을 생성하는 메서드이다.
+     - `getBenefitsWithoutGift()` : **증정 이벤트를 제외한 할인 혜택 내역**을 반환하는 메서드이다.
+   - `calculateDiscountPrice()` : 평일할인일 경우, 디저트 메뉴 개수 * 2023원 / 주말할인일 경우, 메인 메뉴 개수 * 2023원 / 
+   그 외 기본 할인 금액으로 계산하여 각 할인내역의 총 할인 금액을 계산하는 메서드이다.
+   - `calculateGiftPrice()` : 증정 이벤트의 물품 가격을 총혜택 금액에 추가하는 메서드이다.
+   - `calculateBenefit()` : 총 주문 금액이 최소금액(만 원)보다 적을 경우, 총혜택 금액을 계산하지 않는다. 각 할인타입의 기본 금액과
+   
