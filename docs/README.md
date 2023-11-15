@@ -1,3 +1,7 @@
+## 다이어그램
+<img src="domain.png">
+<img src="abstraction.png">
+
 ## 처리해야할 예외 사항
 
 1. 방문 날짜
