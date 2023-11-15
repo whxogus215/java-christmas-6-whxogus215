@@ -88,12 +88,12 @@
     - [x] 날짜 할인은 평일 할인과 주말 할인으로 나누어 진다.
     - [x] 특별 할인은 정해진 날짜에만 할인된다.
 10. 리팩토링
-- [ ] 변수 명을 가능한 통일하되, 각 이름이 명확하게 구분되어야 한다.
+- [x] 변수 명을 가능한 통일하되, 각 이름이 명확하게 구분되어야 한다.
     - 할인 전 총주문 금액: `totalOrderAmount`
     - 할인 금액의 합계: `totalDiscountAmount`
-    - 증정 메뉴의 가격: `giftItemPrice`
+    - 증정 메뉴의 가격: `giftPrice`
     - 총 혜택 금액: `totalBenefitAmount` (할인 금액의 합계 + 증정 메뉴의 가격)
-    - 할인 후 예상 결제 금액: `expectedPaymentAmount`
+    - 할인 후 예상 결제 금액: `discountedTotalPrice`
 - [x] 컨트롤러 메서드 기능별로 분리시키기
 - [x] 서비스 계층 메서드 기능별로 정리 및 메서드 이름 수정
 
